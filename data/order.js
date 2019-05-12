@@ -2,18 +2,19 @@ const MongoDB = require("mongodb");
 const {
   orderCollection
 } = require('../config/mongoCollections');
+const menuData = require("./menu.js");
 
-async function getAllOrders() {
+async function getAllOrderedMenus(orderId) {
+  orderId = "5cd85836c608972cd4408be0";
   const orderCol = await orderCollection();
-  const allOrder = orderCol.find({}).toArray();
+  var order_ = await getById(orderId);
+
+  var allMenuItems = order_["menuItems"];
 
   var toReturn = [];
-
-  for (var i = 0; i < allOrder.length; i++) {
-    var orderId = allOrder[i]["_id"];
-    toReturn.push(await getById(orderId));
+  for (var i = 0; i < allMenuItems.length; i++) {
+    toReturn[i] = await  menuData.getById(allMenuItems[i]);
   }
-
   return toReturn;
 }
 
@@ -24,13 +25,11 @@ async function getById(id) {
   } else {
     const orderCol = await orderCollection();
     var res;
-    try {
-      res = await orderCol.findOne({
-        _id: MongoDB.ObjectID(id)
-      });
-    } catch (e) {
-      return false;
-    }
+
+    res = await orderCol.findOne({
+      _id: MongoDB.ObjectID(id)
+    });
+    // console.log(`res = ${res["userId"]}`);
 
     if (res === null) {
       console.log("in getById no order with that ID");
@@ -54,7 +53,6 @@ async function create(userEmail) {
   }
   var orderCol = await orderCollection();
   const insertInfo = await orderCol.insertOne(newObj);
-
   if (insertInfo.insertedCount === 0) {
     console.log("in create Could not add new Animal");
     return false;
@@ -99,5 +97,6 @@ async function update_Item_In_Order(orderId, new_Menu_Item) {
 module.exports = {
   getById,
   create,
-  update_Item_In_Order
+  update_Item_In_Order,
+  getAllOrderedMenus
 }

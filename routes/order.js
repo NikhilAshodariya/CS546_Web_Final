@@ -47,9 +47,32 @@ router.post("/create", async (req, res) => {
 
 });
 
-// This route is used to finish purchase
-router.post("/checkOut", async (req, res) => {
+router.get("/ge/:id", async (req, res) => {
+  var id = req.params.id;
+  var check = await orderData.getById(id);
+  console.log(`in ge ${check}`);
 
+});
+
+// This route is used to finish purchase
+router.get("/checkOut", async (req, res) => {
+  res.render("order", {
+    "cssName": "order"
+  });
+});
+
+router.post("/getAllOrders", async (req, res) => {
+  console.log("in get all orders");
+  var check = await orderData.getAllOrderedMenus(req.session.orderId);
+  console.log(check);
+  if (check == false) {
+
+  } else {
+    res.status(200).json(check);
+  }
+  // res.render("order",{
+  //   "cssName":"order"
+  // });
 });
 
 // This route will return all the elements of the cart so that the user can see it.
