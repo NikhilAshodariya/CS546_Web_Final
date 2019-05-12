@@ -29,7 +29,7 @@ router.post("/", async (req, res, next) => {
         let { _id, email } = passwordresult.user
         res.cookie('name', 'AuthCookie')
         let user = await users.getUserById(_id)
-
+        
         req.session.user = user
         console.log(req.session.user)
         res.redirect("/user")

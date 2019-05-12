@@ -30,13 +30,17 @@ router.get("/", async (req, res) => {
     try {
         const newReview = await review.postReview(
           req.body.user_emailId,
+          req.body.name,
           req.body.stars,
           req.body.comment
         );
         res.redirect("/writeReview")
         //res.status(200).json(newReview);
       } catch (e) {
-        res.status(500).json({ error: e });
+        console.log("am just caught here")
+        const reviewList = await review.getAllReview();
+        res.status(401);
+        res.render("writeReview",{title:" Reviews",errorfound:"Please fill all the fields",ReviewList:reviewList, noError:true});
       }
     
     
