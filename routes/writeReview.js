@@ -10,8 +10,10 @@ router.get("/", async (req, res) => {
         //     res.redirect("/private")
         // }
         //else{
-            //console.log("hitsssss herehbdcfahbd  me")
-            res.render("writeReview",{title:"Write A Review", noError:true})
+            ////console.log("hitsssss herehbdcfahbd  me")
+            const reviewList = await review.getAllReview();
+            //res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
+            res.render("writeReview",{title:"Reviews" , ReviewList:reviewList, noError:true})
         //}
         
     }
@@ -31,7 +33,7 @@ router.get("/", async (req, res) => {
           req.body.stars,
           req.body.comment
         );
-        res.redirect("/review")
+        res.redirect("/writeReview")
         //res.status(200).json(newReview);
       } catch (e) {
         res.status(500).json({ error: e });
