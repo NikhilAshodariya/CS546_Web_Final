@@ -6,73 +6,102 @@ const orderData = data.order;
 
 
 // This route is used to add element to cart i.e. to order it
-router.post("/create", async (req, res) => {
-  console.log("in create route");
-  let userEmail = req.body.userEmail;
-  let productOrderedId = req.body.productOrderedId;
+router.post("/create/:id", async (req, res) => {
+  let userEmail = req.session.user;
+  let productOrderedId = req.params.id;
   let orderId = req.session.orderId;
 
   // request.session.AuthCookie = true;
-  orderId = undefined;
+  // orderId = undefined;
   if (orderId != undefined) {
     // That means that user has a already ordered something
     var check = await orderData.getById(orderId);
     if (check == false) {
       // you should create a order object here.
     } else {
-      var orderedProduct = await menuData.getById(productOrderedId); // this is the api of Jwiang
-      var updatedOrder = await orderData.update_Item_In_Order(orderId, orderedProduct);
+      var updatedOrder = await orderData.update_Item_In_Order(orderId, productOrderedId);
+      console.log(`updatedOrder = ${updatedOrder}`);
       if (updatedOrder == false) {
         // Something went wrong
       } else {
+        // /order/checkOut
+        res.redirect("/order/checkOut");
+
+        // res.redirect('/menu');
         // Everything is going best
-        res.json({
-          "status": true,
-          "obj": updatedOrder
-        });
+        // res.json({
+        //   "status": true,
+        //   "obj": updatedOrder
+        // });
       }
     }
   } else {
     // that means that it is the first order of the user.
-    var check = await orderData.create(userEmail);
+    console.log(`email = ${req.session.user["email"]}`); // this will give error if the user is not logged in.
+    var check = await orderData.create(userEmail['email'], productOrderedId);
     console.log(check);
     if (check == false) {
-
+      res.redirect('/menu');
     } else {
       req.session.orderId = check["_id"];
-      res.json(check);
+      res.redirect("/order/checkOut");
+
+      // res.redirect('/menu');
+      // if (req.cookies.name === 'AuthCookie') {
+      //   res.render("menu/menu", {
+      //     food: foodList,
+      //     css: "some.css",
+      //     auth: true,
+      //     addedToCart:true
+      //   })
+      // } else {
+      //   res.render("menu/menu", {
+      //     food: foodList,
+      //     css: "some.css",
+      //     addedToCart:true
+      //   })
+      // }
     }
   }
-
-
 });
 
 router.get("/ge/:id", async (req, res) => {
   var id = req.params.id;
   var check = await orderData.getById(id);
-  console.log(`in ge ${check}`);
-
 });
 
 // This route is used to finish purchase
 router.get("/checkOut", async (req, res) => {
-  res.render("order", {
-    "cssName": "order"
-  });
+  console.log(`orderid = ${req.session.orderId}`);
+  if (req.session.user != undefined) {
+    res.render("order", {
+      "cssName": "order",
+      "auth": true
+    });
+  } else {
+    res.render("order", {
+      "cssName": "order",
+      "auth": false
+    });
+  }
+});
+
+router.get("/payment", async (req, res) => {
+  if (req.session.user != undefined) {
+
+  }
 });
 
 router.post("/getAllOrders", async (req, res) => {
-  console.log("in get all orders");
   var check = await orderData.getAllOrderedMenus(req.session.orderId);
   console.log(check);
   if (check == false) {
-
+    res.status(500).json({
+      "status": "Everything went wrong"
+    });
   } else {
     res.status(200).json(check);
   }
-  // res.render("order",{
-  //   "cssName":"order"
-  // });
 });
 
 // This route will return all the elements of the cart so that the user can see it.

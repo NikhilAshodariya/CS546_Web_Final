@@ -23,6 +23,10 @@ router.post("/", async (req, res, next) => {
     let password = xss(req.body.password);
 
     if (email && name && password) {
+        if (password.length < 6) {
+            res.status(401).render("users/signup", { title: "Create Account", message: "Password must be at least 6 characters." })
+        }
+        
         let nameCheck = /(?:[\w\s][^!@#$%^&*()?//><,.;:'"\{\}\[\]=+~`\-_|\\0-9]+)/
         if (!name.match(nameCheck)) {
             res.status(401).render("users/signup", { title: "Create Account", message: "Name is not valid." })

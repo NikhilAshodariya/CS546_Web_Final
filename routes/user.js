@@ -7,7 +7,12 @@ const auth = require("../middleware/auth")
 router.get("/", auth, (req, res, next) => {
   if (req.cookies.name === 'AuthCookie') {
     let userData = req.session.user
-    res.render("users/user", { user: userData, title: "Hi " + userData.name, auth: true })
+    if (userData) {
+      res.render("users/user", { user: userData, title: "Hi " + userData.name, auth: true })
+    }
+    else {
+      res.render("users/login", { title: "Login" });
+    }
   } 
   else {
       res.render("users/login", { title: "Login" });

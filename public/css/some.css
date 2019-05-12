@@ -13,6 +13,7 @@
   .imagealign{
       width: 280px;
       height: 290px;
+      float: right;
   }
   .videojs {
     position: absolute;

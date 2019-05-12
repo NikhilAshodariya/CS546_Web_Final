@@ -1,7 +1,7 @@
 {{!-- <div class = "menu form-menu">
     <div class = "menu-body">
         <h3 class = "menu-title">Menu</Menu></h3>
-        
+
     </div>
 </div> --}}
 <div class="some-align">
@@ -10,19 +10,33 @@
         <p>{{errMsg}}</p>
     {{/if}}
 
-    {{#each food}}
+    <br>
+    <h1 class="centered">Menu</h1>
+    <br>
 
-    {{!-- {{# if this.img}} --}}
-    <div class="border">
-        <img src="../{{this.imagepath}}" class="imagealign">
-        <label>{{this.name}}</label><br>
-        <form method="GET" action="/uploadMenu/{{this._id}}">
-            <button type="submit" value="{{this._id}}">Open</button>
-        </form>
-        <form method="GET" action="//uploadMenu/{{this._id}}">
-            <button type="submit" value="{{this._id}}">Add to the Cart</button>
-        </form>
+    <div class="list-group menu">
+        {{#each food}}
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h4>{{this.name}}</h4>
+                        <p>{{this.description}}</p>
+                        <p class="price">${{this.price}}</p>
+                        {{!-- <form method="GET" action="/uploadMenu/{{this._id}}">
+                            <button class="btn btn-primary" type="submit" value="{{this._id}}">Open</button>
+                        </form>
+                        <br> --}}
+                        <form method="POST" action="/order/create/{{this._id}}">
+                            <button class="btn btn-primary" type="submit" value="{{this._id}}">Add to Cart</button>
+                        </form>
+                    </div>
+                    <div class="col-sm">
+                        <img src="../{{this.imagepath}}" class="imagealign">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
     </div>
-    {{!-- {{/if}} --}}
-    {{/each}}
 </div>

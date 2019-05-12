@@ -1,25 +1,31 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Welcome, {{ user.name }}</h1>
+    <br>
+    <h3 class="lead">{{ user.email }}</h3>
   </div>
 </div>
+
 
 <div class="card text-center">
   <div class="card-header">
     Your Orders
   </div>
   {{#each user.orders}}
-    <li>Order placed: {{this.orderDateTime}}</li>
-    <li>Total: {{this.total}}</li>
+    <ul>
+        <li>Order placed: {{this.orderDateTime}}</li>
+        <li>Total: {{this.total}}</li>
+    </ul>
+    <hr>
   {{/each}}
-  <div class="card-body">
+  {{!-- <div class="card-body">
     <h5 class="card-title">First Order</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
   <div class="card-footer text-muted">
     2 days ago
-  </div>
+  </div> --}}
 </div>
 
 <br>

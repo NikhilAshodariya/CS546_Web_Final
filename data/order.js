@@ -5,21 +5,28 @@ const {
 const menuData = require("./menu.js");
 
 async function getAllOrderedMenus(orderId) {
-  orderId = "5cd85836c608972cd4408be0";
-  const orderCol = await orderCollection();
-  var order_ = await getById(orderId);
+  if (!orderId || typeof(orderId) != 'string') {
+    // i.e. orderId is undefined
+    return false;
+  } else {
+    console.log(`in getAllOrderedMenus order id = ${orderId}`);
+    const orderCol = await orderCollection();
+    var order_ = await getById(orderId);
 
-  var allMenuItems = order_["menuItems"];
+    var allMenuItems = order_["menuItems"];
+    console.log(`allMenuItems = ${allMenuItems} and it's length = ${allMenuItems.length}`);
 
-  var toReturn = [];
-  for (var i = 0; i < allMenuItems.length; i++) {
-    toReturn[i] = await  menuData.getById(allMenuItems[i]);
+    var toReturn = [];
+    for (var i = 0; i < allMenuItems.length; i++) {
+      toReturn.push(await menuData.getById(allMenuItems[i].toString()));
+    }
+    console.log(`to Return = ${toReturn}`);
+    return toReturn;
   }
-  return toReturn;
 }
 
 async function getById(id) {
-  if (!id) {
+  if (!id || typeof(id) != "string") {
     console.log("in order getById invalid Id passed");
     return false;
   } else {
@@ -29,7 +36,6 @@ async function getById(id) {
     res = await orderCol.findOne({
       _id: MongoDB.ObjectID(id)
     });
-    // console.log(`res = ${res["userId"]}`);
 
     if (res === null) {
       console.log("in getById no order with that ID");
@@ -39,17 +45,20 @@ async function getById(id) {
   }
 }
 
-async function create(userEmail) {
+async function create(userEmail, productOrderedId) {
   // console.log(`orderCollection is ${orderCollection}`);
-  if (!userEmail) {
+  var new_Menu_Item = await menuData.getById(productOrderedId);
+  console.log(`in create new_Menu_Item = ${new_Menu_Item}`);
+  if (!userEmail || typeof(userEmail) != 'string') {
+    console.log(`in create if`);
     return false;
   }
 
   let newObj = {
     orderDateTime: new Date(),
     userId: userEmail,
-    menuItems: [],
-    total: 0,
+    menuItems: [new_Menu_Item["_id"]],
+    total: new_Menu_Item["price"],
   }
   var orderCol = await orderCollection();
   const insertInfo = await orderCol.insertOne(newObj);
@@ -64,8 +73,14 @@ async function create(userEmail) {
   return ops[0];
 }
 
-async function update_Item_In_Order(orderId, new_Menu_Item) {
+async function update_Item_In_Order(orderId, productOrderedId) {
+  if (!orderId || !productOrderedId) {
+    return false;
+  }
+  console.log(`in update_Item_In_Order`);
+
   var OriginalOrder = await getById(orderId);
+  var new_Menu_Item = await menuData.getById(productOrderedId);
 
   var prodPrice = new_Menu_Item["price"];
   var prodId = new_Menu_Item["_id"];
@@ -84,7 +99,9 @@ async function update_Item_In_Order(orderId, new_Menu_Item) {
   const updatedInfo = await orderCol.updateOne({
     _id: MongoDB.ObjectID(orderId)
   }, newValues);
-
+  console.log(`new_Menu_Item = ${new_Menu_Item}`);
+  console.log(`OriginalOrder = ${OriginalOrder}`);
+  console.log(`updatedInfo = ${updatedInfo} and modifiedCount = ${updatedInfo.modifiedCount}`);
   if (updatedInfo.modifiedCount === 0) {
     console.log("in update modifiedCount is zero");
     return false;
