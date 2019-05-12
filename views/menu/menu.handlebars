@@ -1,7 +1,7 @@
 {{!-- <div class = "menu form-menu">
     <div class = "menu-body">
         <h3 class = "menu-title">Menu</Menu></h3>
-        
+
     </div>
 </div> --}}
 <div class="some-align">
@@ -19,7 +19,7 @@
         <form method="GET" action="/uploadMenu/{{this._id}}">
             <button type="submit" value="{{this._id}}">Open</button>
         </form>
-        <form method="GET" action="//uploadMenu/{{this._id}}">
+        <form method="POST" action="/order/create/{{this._id}}">
             <button type="submit" value="{{this._id}}">Add to the Cart</button>
         </form>
     </div>

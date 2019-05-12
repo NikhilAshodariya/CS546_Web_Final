@@ -5,21 +5,25 @@ const {
 const menuData = require("./menu.js");
 
 async function getAllOrderedMenus(orderId) {
-  orderId = "5cd85836c608972cd4408be0";
-  const orderCol = await orderCollection();
-  var order_ = await getById(orderId);
+  if (!orderId || typeof(orderId)!='string') {
+    // i.e. orderId is undefined
+    return false;
+  } else {
+    const orderCol = await orderCollection();
+    var order_ = await getById(orderId);
 
-  var allMenuItems = order_["menuItems"];
+    var allMenuItems = order_["menuItems"];
 
-  var toReturn = [];
-  for (var i = 0; i < allMenuItems.length; i++) {
-    toReturn[i] = await  menuData.getById(allMenuItems[i]);
+    var toReturn = [];
+    for (var i = 0; i < allMenuItems.length; i++) {
+      toReturn[i] = await menuData.getById(allMenuItems[i]);
+    }
+    return toReturn;
   }
-  return toReturn;
 }
 
 async function getById(id) {
-  if (!id) {
+  if (!id || typeof(id)!="string") {
     console.log("in order getById invalid Id passed");
     return false;
   } else {
@@ -29,7 +33,6 @@ async function getById(id) {
     res = await orderCol.findOne({
       _id: MongoDB.ObjectID(id)
     });
-    // console.log(`res = ${res["userId"]}`);
 
     if (res === null) {
       console.log("in getById no order with that ID");
@@ -41,7 +44,8 @@ async function getById(id) {
 
 async function create(userEmail) {
   // console.log(`orderCollection is ${orderCollection}`);
-  if (!userEmail) {
+  if (!userEmail || typeof(userEmail)!= 'string') {
+    console.log(`in create if`);
     return false;
   }
 
@@ -65,6 +69,12 @@ async function create(userEmail) {
 }
 
 async function update_Item_In_Order(orderId, new_Menu_Item) {
+  if (!orderId || typeof(orderId) != 'string') {
+    return false;
+  }
+  else if (!new_Menu_Item || typeof(new_Menu_Item)!='string') {
+    return false;
+  }
   var OriginalOrder = await getById(orderId);
 
   var prodPrice = new_Menu_Item["price"];
