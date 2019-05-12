@@ -87,8 +87,8 @@ async function addReview(userId, date, stars, comment) {
   return await this.getReviewById(String(newId));
 }
 
-async function postReview(user_email, date, stars, comment) {
-  if(arguments.length < 4) {
+async function postReview(user_email, comment, stars) {
+  if(arguments.length < 3) {
     throw "You should enter all four";
   }
   if (!stars) throw "You must provide stars";
@@ -100,12 +100,11 @@ async function postReview(user_email, date, stars, comment) {
   const reviewCollection = await review();
   //const usersCollection = await users_();
 
-  const userThatPosted = await users.getUserByEmail(user_email);
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  "+ userThatPosted)
+  //const userThatPosted = await users.getUserByEmail(user_email);
+  //console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  "+ userThatPosted)
 
   const newReview = {
-    user_emailId: userThatPosted.user_email,
-    date: date,
+    user_emailId: user_email,
     stars: stars,
     comment: comment
   };
@@ -115,7 +114,7 @@ async function postReview(user_email, date, stars, comment) {
     throw `Failed to create the review`;
   }
   const newId = newInsertInformation.insertedId;
-  return await this.getReviewById(String(newId));
+  return await getAllReview();
 }
 
 

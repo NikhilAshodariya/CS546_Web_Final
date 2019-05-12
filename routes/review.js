@@ -11,34 +11,34 @@ const { user, review } = require("../data");
 
 router.get("/", async (req, res) => {
   try {
-    // console.log(animalList111111gtftutdyt);
+    console.log("animalList111111gtftutdyt");
     const reviewList = await review.getAllReview();
-    const userList = await user.getAllUsers();
-    //console.log("animalList111111");
-    let review_get = {};
-    let Review_User = [];
-    for (let i = 0; i < reviewList.length; i++) {
-      for (let j = 0; j < userList.length; j++) {
-        if (reviewList[i]["userId"].equals(userList[j]._id)) {
-          //console.log("hits here");
-          let userWhoReviewed = {
-            _id: userList[j]._id,
-            name: userList[j]["name"],
-            email: userList[j]["email"]
-          };
-          review_get = {
-            _id: reviewList[i]._id,
-            userWhoReviewed: userWhoReviewed,
-            date: reviewList[i]["date"],
-            stars: reviewList[i]["stars"],
-            comment: reviewList[i]["comment"]
-          };
-          Review_User.push(review_get);
-          //console.log("getList");
-        }
-      }
-    }
-    res.status(200).json(Review_User);
+    // const userList = await user.getAllUsers();
+    // console.log("animalList111111");
+    // let review_get = {};
+    // let Review_User = [];
+    // for (let i = 0; i < reviewList.length; i++) {
+    //   for (let j = 0; j < userList.length; j++) {
+    //     if (reviewList[i]["user_emailId"] == userList[j]["email"]) {
+    //       console.log("hits here");
+    //       // let userWhoReviewed = {
+    //       //   _id: userList[j]._id,
+    //       //   name: userList[j]["name"],
+    //       //   email: userList[j]["email"]
+    //       // };
+    //       review_get = {
+    //         _id: reviewList[i]._id,
+    //         user_emailId: reviewList[i]["user_emailId"],
+    //         stars: reviewList[i]["stars"],
+    //         comment: reviewList[i]["comment"]
+    //       };
+    //       Review_User.push(review_get);
+    //       console.log("getList");
+    //     }
+    //   }
+    // }
+    res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
+    //res.status(200).json(reviewList);
   } catch (e) {
     res.status(500).json({ error: e });
   }
@@ -204,7 +204,10 @@ router.put("/:id", async (req, res) => {
   try {
     if (!userInfo_newComment && userInfo_newStars !== undefined) {
       console.log("hitss1");
-      const updatedReview = await review.updateStars(String(req.params.id),userInfo_newStars);
+      const updatedReview = await review.updateStars(
+        String(req.params.id),
+        userInfo_newStars
+      );
       const userList = await user.getAllUsers();
       let review_get = {};
       let Review_User = [];
@@ -221,7 +224,7 @@ router.put("/:id", async (req, res) => {
             userId: userWhoReviewed,
             date: updatedReview["date"],
             stars: updatedReview["stars"],
-            comment:updatedReview["comment"]
+            comment: updatedReview["comment"]
           };
           Review_User.push(review_get);
         }
@@ -235,7 +238,7 @@ router.put("/:id", async (req, res) => {
         userInfo_newComment
       );
 
-      console.log("may be hhere")
+      console.log("may be hhere");
       const userList = await user.getAllUsers();
       let review_get = {};
       let Review_User = [];
@@ -252,7 +255,7 @@ router.put("/:id", async (req, res) => {
             userId: userWhoReviewed,
             date: updatedReview["date"],
             stars: updatedReview["stars"],
-            comment:updatedReview["comment"]
+            comment: updatedReview["comment"]
           };
           Review_User.push(review_get);
         }
@@ -282,7 +285,7 @@ router.put("/:id", async (req, res) => {
             userId: userWhoReviewed,
             date: updatedReview["date"],
             stars: updatedReview["stars"],
-            comment:updatedReview["comment"]
+            comment: updatedReview["comment"]
           };
           Review_User.push(review_get);
         }
