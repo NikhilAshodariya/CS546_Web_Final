@@ -37,9 +37,17 @@ router.get("/", async (req, res) => {
     //     }
     //   }
     // }
-    res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
+
+    if (req.cookies.name === 'AuthCookie') {
+      // const thisUser = await users.getUserById(req.session.user._id)
+      res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true, auth: true})
+    } 
+    else {
+      res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
+    }
+  }
     //res.status(200).json(reviewList);
-  } catch (e) {
+  catch (e) {
     res.status(500).json({ error: e });
   }
 });

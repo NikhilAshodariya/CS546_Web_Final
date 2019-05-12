@@ -16,7 +16,12 @@ router.get('/', async (req, res) => {
       }
     })
     // console.log(foodList);
-    res.render("menu/menu", {food: foodList, css: "some.css"})
+    if (req.cookies.name === 'AuthCookie') {
+      res.render("menu/menu", {food: foodList, css: "some.css", auth: true})
+    } 
+    else {
+      res.render("menu/menu", {food: foodList, css: "some.css"})
+    }
     // res.status(200).json(foodList);
   } catch(e) {
     res.render("menu/menu", {errMsg: e});
