@@ -13,7 +13,14 @@ router.get("/", async (req, res) => {
             ////console.log("hitsssss herehbdcfahbd  me")
             const reviewList = await review.getAllReview();
             //res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
-            res.render("writeReview",{title:"Reviews" , ReviewList:reviewList, noError:true})
+
+            if (req.cookies.name === 'AuthCookie') {
+              // const thisUser = await users.getUserById(req.session.user._id)
+              res.render("writeReview",{title:"Reviews" , ReviewList:reviewList, noError:true, auth: true})
+            } 
+            else {
+              res.render("writeReview",{title:"Reviews" , ReviewList:reviewList, noError:true})
+            }
         //}
         
     }
