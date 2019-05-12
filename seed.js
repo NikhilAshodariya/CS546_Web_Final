@@ -4,7 +4,8 @@ const Db = require("mongodb").Db;
 const {
     menu,
     user,
-    review
+    review,
+    upload
 } = require("./data")
 
 async function main() {
@@ -12,8 +13,8 @@ async function main() {
     await db.dropDatabase();
 
     try {
-        await menu.create("Roast duck", 12, "It's a delicious food from Beijing, China.")
-        await menu.create("French fries", 6, "It's a food from USA");
+        await upload.addMenuImage("Roast duck", 12, "It's a delicious food from Beijing, China.","Roast-duck.jpg","image/jpg","public/uploads/menuimages/Roast-duck.jpg")
+        await upload.addMenuImage("French fries", 6, "It's a food from USA","french-fries.jpg","image/jpg","public/uploads/menuimages/french-fries.jpg");
     } catch(e) {
         console.log(e);
     }
