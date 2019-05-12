@@ -1,0 +1,28 @@
+{{!-- <div class = "menu form-menu">
+    <div class = "menu-body">
+        <h3 class = "menu-title">Menu</Menu></h3>
+        
+    </div>
+</div> --}}
+<div class="some-align">
+
+    {{#if errMsg}}
+        <p>{{errMsg}}</p>
+    {{/if}}
+
+    {{#each food}}
+
+    {{# if this.img}}
+    <div class="border">
+        <img src="../{{this.mImagepath}}" class="imagealign">
+        <label>{{this.mName}}</label><br>
+        <form method="GET" action="/uploadMenu/{{this._id}}">
+            <button type="submit" value="{{this._id}}">Open</button>
+        </form>
+        <form method="GET" action="//uploadMenu/{{this._id}}">
+            <button type="submit" value="{{this._id}}">Add to the Cart</button>
+        </form>
+    </div>
+    {{/if}}
+    {{/each}}
+</div>

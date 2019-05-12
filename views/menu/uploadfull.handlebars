@@ -1,0 +1,35 @@
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form action="/uploadMenu" method="post" id="myForm" enctype="multipart/form-data">
+            <span class="contact100-form-title">
+                Upload your menu
+            </span>
+
+            <div class="wrap-input100">
+                <input class="input100" id="name" type="text" name="name" placeholder="Name" required>
+            </div>
+
+            <div class="wrap-input100">
+                <input class="input100" name="price" type ="number" placeholder="Price" required></input>
+            </div>
+
+            <div class="wrap-input100">
+                <textarea class="input101" name="description" placeholder="The description of this menu" required></textarea>
+            </div>
+
+            <label>Upload the name of the menu image</label>
+            <div class="wrap-input100">
+                <input type="file" id="file" name="file" class="upload-btn" required >
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <div class="wrap-contact100-form-btn">
+                    <div class="contact100-form-bgbtn"></div>
+                    <button class="contact100-form-btn">
+                        UPLOAD
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
