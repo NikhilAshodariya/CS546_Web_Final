@@ -24,7 +24,10 @@ router.post("/create/:id", async (req, res) => {
       if (updatedOrder == false) {
         // Something went wrong
       } else {
-        res.redirect('/menu');
+        // /order/checkOut
+        res.redirect("/order/checkOut");
+
+        // res.redirect('/menu');
         // Everything is going best
         // res.json({
         //   "status": true,
@@ -41,7 +44,9 @@ router.post("/create/:id", async (req, res) => {
       res.redirect('/menu');
     } else {
       req.session.orderId = check["_id"];
-      res.redirect('/menu');
+      res.redirect("/order/checkOut");
+
+      // res.redirect('/menu');
       // if (req.cookies.name === 'AuthCookie') {
       //   res.render("menu/menu", {
       //     food: foodList,

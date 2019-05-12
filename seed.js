@@ -19,7 +19,7 @@ async function main() {
         console.log(e);
     }
 
-    
+
     try {
         const phil = await user.addUser("phil@gmail.com","Phil","$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.");
         const id_1 = phil._id;
