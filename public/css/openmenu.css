@@ -1,0 +1,79 @@
+.openres{
+      padding: 20px 470px;
+      align-content: center;
+}
+.openresvid{
+  padding-bottom: 0%;
+  padding-top: 2%;
+  padding-left: 15%;
+  padding-right: 5%;
+  align-content: center;
+}
+
+.videorec {
+  width: 80%;
+  height: 60%;
+}
+
+.videojs {
+    display: block;
+    background: transparent url('https://s-cdn.innovid.com/m/assets/images/apps/gallery/play_btn.png?v2');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 75%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 26;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.img-alignment{
+    width: 350px;
+    height:450px;
+}
+.inputBoxRead{
+    border: none;
+    font-size: 40px;
+}
+/* .textareaRead{
+    outline: none;
+    border: none;
+    font-size: 20px;
+} */
+.wrap-input100 {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    margin-bottom: 17px;
+    
+  }
+  .input100 {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Oswald-Medium;
+    font-size: 20px;
+    color: #43383e;
+    line-height: 1.2;
+    padding: 0 5px;
+    border: none;
+    height: 60px;
+  }
+  .input101 {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Oswald-Medium;
+    font-size: 20px;
+    color: #43383e;
+    line-height: 1.2;
+    padding: 0 5px;
+    border: none;
+    height: 60px;
+  }
+  textarea.input101 {
+    min-height: 199px;
+    /* padding: 19px 20px 0 23px; */
+  }
