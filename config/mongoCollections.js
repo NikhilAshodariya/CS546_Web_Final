@@ -20,6 +20,6 @@ const getCollectionFn = collection => {
 module.exports = {
   usersCollection: getCollectionFn('users'),
   menuCollection: getCollectionFn('menu'),
-  orderCollection: getCollectionFn("order"),
+  orderCollection: getCollectionFn("orders"),
   reviewCollection: getCollectionFn("review")
 };

@@ -5,9 +5,12 @@
       <meta charset="utf-8">
       <title>{{title}}</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">      <link rel="stylesheet" href="../../public/css/main.css">
+      <link rel="stylesheet" href="/public/css/{{cssName}}.css">
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul class="navbar-nav mr-auto">
@@ -33,14 +36,14 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto">
-              
+
                 {{#if auth}}
                   <li class="nav-item" id="cart-nav-button">
                     <a class="nav-link" href="/user">My Account</a>
-                  </li> 
+                  </li>
                   <li class="nav-item" id="cart-nav-button">
                     <a class="nav-link" href="#">Cart</a>
-                  </li> 
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" id="login-nav-button" href="/logout">Log Out</a>
                   </li>
@@ -69,8 +72,8 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        
-        <script src="public/js/main.js"></script>
+
+        <script src="/public/js/main.js"></script>
   </body>
 
 </html>
