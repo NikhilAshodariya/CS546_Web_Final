@@ -12,10 +12,10 @@
 
     {{#each food}}
 
-    {{# if this.img}}
+    {{!-- {{# if this.img}} --}}
     <div class="border">
-        <img src="../{{this.mImagepath}}" class="imagealign">
-        <label>{{this.mName}}</label><br>
+        <img src="../{{this.imagepath}}" class="imagealign">
+        <label>{{this.name}}</label><br>
         <form method="GET" action="/uploadMenu/{{this._id}}">
             <button type="submit" value="{{this._id}}">Open</button>
         </form>
@@ -23,6 +23,6 @@
             <button type="submit" value="{{this._id}}">Add to the Cart</button>
         </form>
     </div>
-    {{/if}}
+    {{!-- {{/if}} --}}
     {{/each}}
 </div>
