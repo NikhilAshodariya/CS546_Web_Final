@@ -5,13 +5,16 @@ try {
         //Get a reference to the num_input field
         const emailInput = document.getElementById("user_emailId");
         const commentInput = document.getElementById("comment");
+        const nameInput = document.getElementById("name");
         const starsInput = document.getElementById("stars");
-        if (!emailInput.value || !commentInput.value || !starsInput.value ) {
-            $("#error").show();
-            $("#error").html("You Need to supply an input value!");
+        //////////////////////////////////////////////////////////////////////
+        // if (!emailInput.value || !nameInput.value || !commentInput.value || !starsInput.value ) {
+        //   console.log("its getting here but not working")
+        //     $("#error").show();
+        //     $("#error").html("You Need to supply an input value!");
     
-            //then set the cursor focus to the input field
-            $("#user_emailId").focus();}
+        //     //then set the cursor focus to the input field
+        //     $("#user_emailId").focus();}
 
         console.log("hit6");
 

@@ -40,9 +40,9 @@ async function main() {
         // const firstReview = await review.addReview( String(id_1),"2018-05-27","5","The food was very tasty");
         // const secondReview = await review.addReview( String(id_2),"2018-04-29","4","The food was very yummy");
         // const thirdReview = await review.addReview( String(id_3),"2018-02-26","3","The food was very spicy");
-        const fourthReview = await review.postReview("phil@gmail.com","The food was very spicy","3" )
-        const fifthReview = await review.postReview("keerthana@gmail.com","The food was very yummy","4" )
-        const sixthReview = await review.postReview("rob@gmail.com","The food was very tasty","5" )
+        const fourthReview = await review.postReview("phil@gmail.com","Phill Baresi","3","The food was very spicy" )
+        const fifthReview = await review.postReview("keerthana@gmail.com", "Keerthana","4","The food was very yummy" )
+        const sixthReview = await review.postReview("rob@gmail.com"," Rob","5","The food was very tasty" )
 
        // console.log(firstReview)
     } catch(e) {

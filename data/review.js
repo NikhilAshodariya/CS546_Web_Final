@@ -87,8 +87,8 @@ async function addReview(userId, date, stars, comment) {
   return await this.getReviewById(String(newId));
 }
 
-async function postReview(user_email, stars, comment) {
-  if(arguments.length < 3) {
+async function postReview(user_email, name, stars, comment) {
+  if(arguments.length < 4) {
     throw "You should enter all four";
   }
   if (!stars) throw "You must provide stars";
@@ -105,6 +105,7 @@ async function postReview(user_email, stars, comment) {
 
   const newReview = {
     user_emailId: user_email,
+    name: name,
     stars: stars,
     comment: comment
   };

@@ -15,14 +15,21 @@
     </div>
   </label>
   <label>
-    <p class="label-txt">Give us your comments</p>
+    <p class="label-txt">ENTER YOUR NAME</p>
+    <input type="text" class="input" id="name" name="name">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">FEEDBACK!!</p>
     <input type="text" class="input" id="comment" name="comment">
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
-    <p class="label-txt">How many starts would you give</p>
+    <p class="label-txt">RATINGS OUT OF 5</p>
     <input type="number" class="input" id="stars" name="stars">
     <div class="line-box">
       <div class="line"></div>
@@ -33,7 +40,7 @@
     {{errorfound}}
   </p>
 </form>
-<div class="error" id="error" hidden>
+<div class="error" id="error" >
 </div>
 <div>
 
@@ -60,7 +67,7 @@
       {{!-- <span class="text-muted pull-right">
                 <small class="text-muted">{{this.date}}</small>
             </span> --}}
-      <strong class="text-success">{{this.user_emailId}}</strong>
+      <strong class="text-success">{{this.name}}</strong>
       <strong class="text-success_stars">{{this.stars}}/5</strong>
       <p>
         {{this.comment}}
