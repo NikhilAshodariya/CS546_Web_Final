@@ -2,6 +2,7 @@ const menu = require('./menu.js');
 const user = require('./user.js');
 const review = require("./review.js");
 const order = require("./order.js");
+const upload = require("./upload.js")
 
 /*
   Export both data modules in one file.
@@ -12,5 +13,6 @@ module.exports = {
   menu,
   user,
   review,
-  order
+  order,
+  upload
 };
