@@ -19,32 +19,45 @@ router.post("/create/:id", async (req, res) => {
     if (check == false) {
       // you should create a order object here.
     } else {
-      var orderedProduct = await menuData.getById(productOrderedId); // this is the api of Jwiang
-      var updatedOrder = await orderData.update_Item_In_Order(orderId, orderedProduct);
+      var updatedOrder = await orderData.update_Item_In_Order(orderId, productOrderedId);
+      console.log(`updatedOrder = ${updatedOrder}`);
       if (updatedOrder == false) {
         // Something went wrong
       } else {
+        res.redirect('/menu');
         // Everything is going best
-        res.json({
-          "status": true,
-          "obj": updatedOrder
-        });
+        // res.json({
+        //   "status": true,
+        //   "obj": updatedOrder
+        // });
       }
     }
   } else {
     // that means that it is the first order of the user.
-    console.log(`email = ${req.session.user["email"]}`);
-    var check = await orderData.create(userEmail['email']);
+    console.log(`email = ${req.session.user["email"]}`); // this will give error if the user is not logged in.
+    var check = await orderData.create(userEmail['email'], productOrderedId);
     console.log(check);
     if (check == false) {
-
+      res.redirect('/menu');
     } else {
       req.session.orderId = check["_id"];
-      res.json(check);
+      res.redirect('/menu');
+      // if (req.cookies.name === 'AuthCookie') {
+      //   res.render("menu/menu", {
+      //     food: foodList,
+      //     css: "some.css",
+      //     auth: true,
+      //     addedToCart:true
+      //   })
+      // } else {
+      //   res.render("menu/menu", {
+      //     food: foodList,
+      //     css: "some.css",
+      //     addedToCart:true
+      //   })
+      // }
     }
   }
-
-
 });
 
 router.get("/ge/:id", async (req, res) => {
@@ -54,6 +67,7 @@ router.get("/ge/:id", async (req, res) => {
 
 // This route is used to finish purchase
 router.get("/checkOut", async (req, res) => {
+  console.log(`orderid = ${req.session.orderId}`);
   if (req.session.user != undefined) {
     res.render("order", {
       "cssName": "order",
