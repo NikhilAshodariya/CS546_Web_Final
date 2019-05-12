@@ -10,6 +10,8 @@ const loginRouter = require('./login');
 const logoutRouter = require('./logout');
 const signupRouter = require('./signup');
 const writeReviewRouter = require('./writeReview')
+const uploadDataRouter = require('./uploadData');
+const uploadFormRouter = require('./uploadForm');
 
 
 router.get("/", (req, res) => {
@@ -31,7 +33,8 @@ router.use('/login', loginRouter);
 router.use('/logout', logoutRouter);
 router.use('/signup', signupRouter);
 router.use('/writeReview', writeReviewRouter);
-
+router.use('/uploadForm', uploadFormRouter);
+router.use('/uploadMenu', uploadDataRouter);
 
 // Fallback if the route doesn't match any of our subrouters
 router.use('*', (req, res) => {
