@@ -15,7 +15,7 @@
     <br>
 
     <div class="list-group menu">
-        {{#each food}} 
+        {{#each food}}
         <div class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="container">
                 <div class="row">
@@ -27,7 +27,7 @@
                             <button class="btn btn-primary" type="submit" value="{{this._id}}">Open</button>
                         </form>
                         <br> --}}
-                        <form method="GET" action="//uploadMenu/{{this._id}}">
+                        <form method="POST" action="/order/create/{{this._id}}">
                             <button class="btn btn-primary" type="submit" value="{{this._id}}">Add to Cart</button>
                         </form>
                     </div>
