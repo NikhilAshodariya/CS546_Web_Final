@@ -64,8 +64,23 @@ async function CheckIsProNum(num) {
   if(num <= 0) {
     throw "Please enter a positive number";
   }
-}//
+}
 
+function CheckIsObj(obj) {
+  if(typeof obj != "object") {
+      throw "The input should be in a correct type, and you should enter an object";
+  }
+}
+
+// function CheckIsDefObj(obj) {
+//   if(!obj) {
+//       throw "The object should be existed";
+//   }
+
+//   if(typeof obj === "undefined") {
+//       throw "The input should be defined";
+//   }
+// }//
 
 
 async function getAll() {
@@ -106,13 +121,13 @@ async function getByName(foodname) {
   const menuCollections = await menu();
   let food = await menuCollections.findOne({name: foodname});
 
-  if(food === null) {
+  if(food == null) {
     throw `There is no such food with the name of ${foodname}`;
   }
   return food;
 }
 
-async function create(name, price, description) {
+async function create(name, price, description, imageinfo) {
   if(arguments.length < 2) {
     throw "You should enter at least name and price";
   }
@@ -123,16 +138,19 @@ async function create(name, price, description) {
   await CheckIsProNum(price);
   // await CheckIsDefStr(description);
   await CheckIsProStr(description);
+  await CheckIsObj(imageinfo);
 
   let newFood = {
     name: "",
     price: 0,
-    description: ""
+    description: "",
+    imageinfo: {}
   }
 
   newFood.name = name;
   newFood.price = price;
   newFood.description = description;
+  newFood.imageinfo = imageinfo;
 
   const menuCollections = await menu();
   let Foodadded = await menuCollections.insertOne(newFood);
