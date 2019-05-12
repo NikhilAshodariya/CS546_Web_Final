@@ -47,7 +47,8 @@
 
 
 </div>
-<div class="_home"><a href="/">Home</a></div>
+<a class="_home" href="/"><i class="fa fa-fw fa-home"></i> Home</a> 
+{{!-- <div class="_home"><a href="/">Home</a></div> --}}
 <div>
 
   
@@ -67,8 +68,18 @@
       {{!-- <span class="text-muted pull-right">
                 <small class="text-muted">{{this.date}}</small>
             </span> --}}
-      <strong class="text-success">{{this.name}}</strong>
-      <strong class="text-success_stars">{{this.stars}}/5</strong>
+            <table>
+              <tr>
+                <td>
+                    <strong class="text-success">{{this.name}}</strong>
+                </td>
+                <td class="space">
+                </td>
+                <td>
+                  <strong class="text-success_stars"> RATINGS {{this.stars}}/5</strong>
+                </td>
+              </tr>
+            </table>
       <p>
         {{this.comment}}
       </p>
