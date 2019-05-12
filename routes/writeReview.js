@@ -22,29 +22,17 @@ router.get("/", async (req, res) => {
 
   });
 
-  router.post("/writeReview", async (req, res) => {
-    //console.log(req.session.username)
-   try{
+  router.post("/", async (req, res) => {
+    console.log("aswedfrthy")
+   
     try {
         const newReview = await review.postReview(
-          req.body.email,
+          req.body.user_emailId,
           req.body.stars,
           req.body.comment
         );
-        //const userList = await user.getAllUsers();
-        let review_get = {};
-        let Review_User = [];
-            review_get = {
-               _id: newReview._id,
-               user_emailId: newReview["user_emailId"],
-               stars: newReview["stars"],
-               comment: newReview["comment"]
-             };
-
-            Review_User.push(review_get);
-          
-        //}
-        res.status(200).json(newReview);
+        res.redirect("/review")
+        //res.status(200).json(newReview);
       } catch (e) {
         res.status(500).json({ error: e });
       }
@@ -95,12 +83,7 @@ router.get("/", async (req, res) => {
     //             }
        // }
     // }
-   }
    
-   catch(e){
-    console.log('Error is found', e);
-    res.status(500).json({error: e.toString() || 'Server Error', route: req.originalUrl});
-   }
   });
 
 

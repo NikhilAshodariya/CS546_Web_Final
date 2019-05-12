@@ -87,14 +87,14 @@ async function addReview(userId, date, stars, comment) {
   return await this.getReviewById(String(newId));
 }
 
-async function postReview(user_email, comment, stars) {
+async function postReview(user_email, stars, comment) {
   if(arguments.length < 3) {
     throw "You should enter all four";
   }
   if (!stars) throw "You must provide stars";
-        if (typeof comment !== 'string' || typeof user_email !== 'string') {
-          throw ` incorrect input please enter a valid input check type for comment  or id`;
-            }
+        // if (typeof comment !== 'string' || typeof user_email !== 'string') {
+        //   throw ` incorrect input please enter a valid input check type for comment  or id`;
+        //     }
         
       //if(typeof date !== '')
   const reviewCollection = await review();
