@@ -1,20 +1,28 @@
+// libraries
 const express = require('express');
 const bodyParser = require("body-parser");
-const app = express();
+const session = require("express-session");
 
 const morgan = require('morgan'); // small library for our logger
-const routes = require('./routes');
 const exphbs = require("express-handlebars");
 const cookie = require('cookie-parser');
-const session = require('express-session')
 
+
+// Own libraries
+const routes = require('./routes');
+
+
+const app = express();
 
 const static = express.static(__dirname + "/public");
 app.use("/public", static);
 
 // Middlewares Here
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
+
 app.use(cookie());
 app.use(morgan('dev')); // helper for logging our routes to the console
 
