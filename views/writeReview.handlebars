@@ -1,39 +1,73 @@
 <h1 class="writeReview">{{title}}</h1>
-    {{!-- <link href="public/css/style.css" rel="stylesheet" id="bootstrap-css">
+{{!-- <link href="public/css/style.css" rel="stylesheet" id="bootstrap-css">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         
         <script src="public/js/script.js"></script> --}}
-     
-        
-        <form action="/writeReview" method="POST" class="new-review-form" id="review-form">
-          <label>
-            <p class="label-txt">ENTER YOUR EMAIL</p>
-            <input type="text" class="input"  id = "user_emailId" name="user_emailId">
-            <div class="line-box">
-              <div class="line"></div>
-            </div>
-          </label>
-          <label>
-            <p class="label-txt">Give us your comments</p>
-            <input type="text" class="input" id="comment" name="comment">
-            <div class="line-box">
-              <div class="line"></div>
-            </div>
-          </label>
-          <label>
-            <p class="label-txt">How many starts would you give</p>
-            <input type="text" class="input" id="stars" name="stars">
-            <div class="line-box">
-              <div class="line"></div>
-            </div>
-          </label>
-          <button type="submit" class="button5">Submit Review</button>
-          <p class="error">
+
+
+<form action="/writeReview" method="POST" class="new-review-form" id="review-form">
+  <label>
+    <p class="label-txt">ENTER YOUR EMAIL</p>
+    <input type="email" class="input" id="user_emailId" name="user_emailId">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">Give us your comments</p>
+    <input type="text" class="input" id="comment" name="comment">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">How many starts would you give</p>
+    <input type="number" class="input" id="stars" name="stars">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <button type="submit" class="button5">Submit Review</button>
+  <p class="error">
     {{errorfound}}
-</p>
-        </form>
-        
+  </p>
+</form>
+<div class="error" id="error" hidden>
+</div>
+<div>
+
+
+
+</div>
+<div class="_home"><a href="/">Home</a></div>
+<div>
+
   
+</div>
+{{#if hasError}}
+<p class="not-found">{{error}}</p>
+{{/if}}
 
+{{#if noError}}
+{{#each ReviewList}}
+<ul class="media-list">
+  <li class="media">
+    {{!-- <a href="#" class="pull-left"> --}}
+    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+    </a>
+    <div class="media-body">
+      {{!-- <span class="text-muted pull-right">
+                <small class="text-muted">{{this.date}}</small>
+            </span> --}}
+      <strong class="text-success">{{this.user_emailId}}</strong>
+      <strong class="text-success_stars">{{this.stars}}/5</strong>
+      <p>
+        {{this.comment}}
+      </p>
+    </div>
+  </li>
+</ul>
+{{/each}}
 
+{{/if}}
