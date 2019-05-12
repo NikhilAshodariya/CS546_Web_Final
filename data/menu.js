@@ -18,7 +18,7 @@ async function CheckIsProStr(str) {
 
 async function CheckIsDefStr(str) {
   if(!str) {
-      throw "The input should be existed";
+      throw "The input should be existed with str";
   }
   
   if(typeof str === "undefined") {
@@ -137,8 +137,8 @@ async function create(name, price, description, imageinfo) {
   await CheckIsDefNum(price);
   await CheckIsProNum(price);
   // await CheckIsDefStr(description);
-  await CheckIsProStr(description);
-  await CheckIsObj(imageinfo);
+  // await CheckIsProStr(description);
+  // await CheckIsObj(imageinfo);
 
   let newFood = {
     name: "",
@@ -303,3 +303,4 @@ module.exports = {
   removeById,
   removeByName
 };
+
