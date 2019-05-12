@@ -6,7 +6,7 @@ const session = require("express-session");
 const morgan = require('morgan'); // small library for our logger
 const exphbs = require("express-handlebars");
 const cookie = require('cookie-parser');
-const session = require('express-session')
+
 
 // Own libraries
 const routes = require('./routes');

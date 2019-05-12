@@ -72,14 +72,13 @@ async function update_Item_In_Order(orderId, new_Menu_Item) {
   var prodPrice = new_Menu_Item["price"];
   var prodId = new_Menu_Item["_id"];
   var temp = Number(OriginalOrder["total"]) + prodPrice;
+  // db.clubs.update({clubname: ”Manhattan"}, {$push: {visitors: {women: 0}}})
   var newValues = {
-    $set: {
-      total: temp
+    "$set": {
+      "total": temp
     },
-    $push: {
-      {
-        menuItems: prodId
-      }
+    "$push": {
+      "menuItems": prodId
     }
   };
 
