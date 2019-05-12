@@ -44,3 +44,16 @@ footer {
 .price {
     font-weight:bold;
 }
+
+.jumbotron-home {
+    background: url("../uploads/siteimages/hero.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.container-home {
+    background: rgba(230, 230, 250, 0.90);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
