@@ -45,6 +45,27 @@ async function CheckIsId(str) {
     }
 }//
 
+//Check num
+async function CheckIsDefNum(num) {
+    if(!num) {
+        throw "The number should be existed";
+    }
+  
+    if(typeof num === "undefined") {
+        throw "The input shouldn't be undefined";
+    }
+  }
+  
+  async function CheckIsProNum(num) {
+    if(typeof num != "number") {
+        throw `The input ${num} should be in a correct type which is a num`;
+    }
+  
+    if(num <= 0) {
+      throw "Please enter a positive number";
+    }
+  }//
+
 async function getAll() {
     const menuCollections = await menu();
     let menuList = await menuCollections.find({}).toArray();
@@ -81,12 +102,12 @@ async function addMenuImage(name, price, description, imagename, mimetype, image
     // await CheckIsDefStr(description);
     await CheckIsProStr(description);
     let newMenu = {
-        mName: name,
-        mPrice: price,
-        mDescription: description,
-        mImagename: imagename,
-        mMimetype: mimetype,
-        mImagepath: imagepath
+        name: name,
+        price: price,
+        description: description,
+        imagename: imagename,
+        mimetype: mimetype,
+        imagepath: imagepath
     }
     console.log(newMenu);
     let insertMenu = await menuCollections.insertOne(newMenu);
@@ -99,10 +120,10 @@ async function addMenuImage(name, price, description, imagename, mimetype, image
 async function addImage(name,imagename,mimetype, imagepath){
     const menuCollections = await menu();
     let newFood = {
-        mName: name,
-        mImagename: imagename,
-        mMimetype: mimetype,
-        mImagepath: imagepath
+        name: name,
+        imagename: imagename,
+        mimetype: mimetype,
+        imagepath: imagepath
     }
     let insertfood = await menuCollections.insertOne(newFood);
     if (insertfood.insertedCount === 0) throw "Could not add post";
@@ -115,4 +136,3 @@ module.exports = {
     addMenuImage,
     addImage
 }
-
