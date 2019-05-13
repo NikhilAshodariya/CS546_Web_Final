@@ -77,7 +77,6 @@ async function update_Item_In_Order(orderId, productOrderedId) {
   if (!orderId || !productOrderedId) {
     return false;
   }
-  console.log(`in update_Item_In_Order`);
 
   var OriginalOrder = await getById(orderId);
   var new_Menu_Item = await menuData.getById(productOrderedId);
@@ -111,9 +110,56 @@ async function update_Item_In_Order(orderId, productOrderedId) {
 
 }
 
+async function delete_Menu_From_Order(orderId, menuId) {
+  if (!orderId || !menuId) {
+    return false;
+  } else {
+    var OriginalOrder = await getById(orderId);
+    var menuItems = OriginalOrder["menuItems"];
+    var toDeleteItem = await menuData.getById(menuId);
+    var flag = 0;
+
+    for (let i = 0; i < menuItems.length; i++) {
+      if (menuItems[i].toString().trim() == menuId.toString().trim()) {
+        delete menuItems[i];
+        menuItems = menuItems.filter((val) => {
+          return val != undefined
+        });
+
+        var temp = Number(OriginalOrder["total"]) - Number(toDeleteItem["price"])
+        var newValues = {
+          "$set": {
+            "menuItems": menuItems,
+            "total": temp
+          }
+        };
+
+        var orderCol = await orderCollection();
+        const updatedInfo = await orderCol.updateOne({
+          _id: MongoDB.ObjectID(orderId.toString())
+        }, newValues);
+
+        if (updatedInfo.modifiedCount === 0) {
+          flag = 0;
+          break;
+        } else {
+          flag = 1;
+          break;
+        }
+      }
+    }
+    if (flag === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 module.exports = {
   getById,
   create,
   update_Item_In_Order,
-  getAllOrderedMenus
+  getAllOrderedMenus,
+  delete_Menu_From_Order
 }

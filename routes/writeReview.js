@@ -1,6 +1,9 @@
 const router = require("express").Router();
 
-const { user, review } = require("../data");
+const {
+  user,
+  review
+} = require("../data");
 const auth = require("../middleware/auth");
 var xss = require("xss");
 
@@ -10,7 +13,7 @@ router.get("/", async (req, res) => {
     const reviewList = await review.getAllReview();
     //res.render("review",{title:"Reviews" , ReviewList:reviewList, noError:true})
 
-    if (req.cookies.name === "AuthCookie") {
+    if (req.session.user != undefined) {
       // const thisUser = await users.getUserById(req.session.user._id)
       res.render("writeReview", {
         cssName: "main",
@@ -32,7 +35,10 @@ router.get("/", async (req, res) => {
     console.log("Error is found ", e);
     res
       .sendStatus(500)
-      .json({ error: e.toString() || "Server Error", route: req.originalUrl });
+      .json({
+        error: e.toString() || "Server Error",
+        route: req.originalUrl
+      });
   }
 });
 

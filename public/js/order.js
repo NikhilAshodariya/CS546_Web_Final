@@ -1,8 +1,47 @@
+function deleteMenuItem(even) {
+  $.ajax({
+    url: "/order/deleteMenuItemFromOrder",
+    type: "delete",
+    data: {
+      menuId: $(even.target).val()
+    },
+    success: function(res) {
+      res = JSON.parse(JSON.stringify(res));
+      if (res["status"] == true) {
+        location.reload();
+      }
+    },
+    error: function(err) {
+      alert("could not delte it");
+      console.log(`Some error has happedned ${err}`);
+    }
+  });
+}
+
+function deleteEntireCart(even) {
+  $.ajax({
+    url: "/order/delteOrder",
+    type: "POST",
+    success: function(res) {
+      alert("Your order is placed and your cart is empty");
+      window.location.href = "/menu";
+    },
+    error: function(request, status, err) {
+      alert("Your order is not placed.");
+      window.location.href = "/menu";
+    }
+  });
+}
+
 $(document).ready(function() {
-  // alert("In ready function");
+  $("a.btn-primary").click(function(even) {
+    deleteEntireCart(even);
+  });
+
   $.ajax({
     url: "/order/getAllOrders",
     type: "POST",
+    async: false,
     success: function(res) {
       console.log(res);
       dispalyOrders(res)
@@ -42,8 +81,7 @@ function dispalyOrders(res) {
         </td>
         <td data-th="Subtotal" class="text-center">$${temp["price"]}</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-danger btn-sm" value=${temp["_id"]}><i class="fa fa-trash-o"></i></button>
         </td>
       </tr>
       `);
@@ -51,4 +89,8 @@ function dispalyOrders(res) {
 
   $("tfoot tr.visible-xs td.text-center strong").text(`Total $${totalAmount}`);
   $("tfoot td.text-center.hidden-xs strong").text(`Total $${totalAmount}`);
+
+  $(".btn-danger").click(function(even) {
+    deleteMenuItem(even);
+  });
 }
