@@ -63,8 +63,7 @@ router.get("/checkOut", async (req, res) => {
         "cssName": "order",
         "auth": true
       });
-    }
-    else {
+    } else {
       res.redirect('/login')
     }
   } else {
@@ -80,8 +79,9 @@ router.get("/payment", async (req, res) => {
 
 router.post("/getAllOrders", async (req, res) => {
   var check = await orderData.getAllOrderedMenus(req.session.orderId);
-  console.log(check);
-  if (check == false) {
+  if (check.length == 0) {
+    res.status(200).json({});
+  } else if (check == false) {
     res.status(500).json({
       "status": "Everything went wrong"
     });
@@ -96,12 +96,32 @@ router.post("/getCart", async (req, res) => {
 
   if (orderId == undefined) {
     // This means that user has not added any element to the cart yet.
-    res.json({
-
-    });
+    res.json({});
   } else {
     var check = await orderData.getAllOrders(orderId);
     res.json(check);
+  }
+});
+
+router.delete("/deleteMenuItemFromOrder", async (req, res) => {
+  let orderId = req.session.orderId;
+  let menuId = req.body.menuId;
+
+  if (orderId === undefined || menuId === undefined) {
+    res.json({
+      "status": false
+    })
+  } else {
+    var check = await orderData.delete_Menu_From_Order(orderId, menuId);
+    if (check == false) {
+      res.json({
+        "status": false
+      });
+    } else {
+      res.json({
+        "status": true
+      });
+    }
   }
 });
 
