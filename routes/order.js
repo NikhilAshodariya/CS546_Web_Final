@@ -61,7 +61,8 @@ router.get("/checkOut", async (req, res) => {
     if (req.session.user) {
       res.render("order", {
         "cssName": "order",
-        "auth": true
+        "auth": true,
+        "title":"Cart"
       });
     } else {
       res.redirect('/login')
