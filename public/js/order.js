@@ -62,7 +62,6 @@ function dispalyOrders(res) {
         </td>
         <td data-th="Subtotal" class="text-center">$${temp["price"]}</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
           <button class="btn btn-danger btn-sm" value=${temp["_id"]}><i class="fa fa-trash-o"></i></button>
         </td>
       </tr>
