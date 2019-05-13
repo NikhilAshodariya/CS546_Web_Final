@@ -1,12 +1,7 @@
+
 <br>
 <h1 class="writeReview centered">{{title}}</h1>
 <br>
-{{!-- <link href="public/css/style.css" rel="stylesheet" id="bootstrap-css">
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        
-        <script src="public/js/script.js"></script> --}}
-
 
 <form action="/writeReview" method="POST" class="new-review-form" id="review-form">
   <div class="card text-center">
@@ -14,59 +9,52 @@
       Write a Review
     </div>
     <div class="card-body">
-        <div class="form-row">
-          <div class="col">
-            <label for="user_emailId">Email</label>
-            <input type="email" class="form-control" id="user_emailId" name="user_emailId" placeholder="Email"> 
-          </div>
-          <div class="col">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-          </div>
-          <div class="col">
-            <label for="name">Rating (1-5)</label>
-            <input type="number" class="form-control" id="stars" name="stars" placeholder="Rating (1-5)" maxSize="1">
-          </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="user_emailId">Email</label>
+          <input type="email" class="form-control" id="user_emailId" name="user_emailId" placeholder="Email" required>
         </div>
-        <br>
-        <label for="comment">Comments</label>
-        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
-{{!-- 
-        <label>
-          <p class="label-txt">FEEDBACK!!</p>
-          <input type="text" class="input" id="comment" name="comment">
-          <div class="line-box">
-            <div class="line"></div>
-          </div>
-        </label>
-        <label>
-          <p class="label-txt">RATINGS OUT OF 5</p>
-          <input type="number" class="input" id="stars" name="stars">
-          <div class="line-box">
-            <div class="line"></div>
-          </div>
-        </label> --}}
-        <p class="error">
-          {{errorfound}}
-        </p>
+        <div class="col">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+        </div>
+        <div class="col">
+          <label for="name">Rating (1-5)</label>
+          <input type="number" class="form-control" id="stars" name="stars" placeholder="Rating (1-5)" maxSize="1"
+            min="1" max="5" required>
+        </div>
+      </div>
+      <br>
+      <label for="comment">Comments</label>
+      <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+      <p class="error">
+        <a href="/signup"> {{errorfound}}</a>
+              
+      </p>
+      <p class="error">
+        {{emptyerror}}
+      </p>
 
 
-        <button type="submit" class="button5 btn btn-dark">Submit Review</button>
+      <button type="submit" class="button5 btn btn-dark">Submit Review</button>
+  
     </div>
   </div>
   
- 
+{{!-- <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+ <div class="g-recaptcha" data-sitekey="6LfBT6MUAAAAABjcFW13NWS172fh-YlkEwaW7Zg_"></div> --}}
+
 </form>
 <div class="error" id="error">
 </div>
 <div>
 
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
 
 
-  
+
 </div>
 {{#if hasError}}
 <p class="not-found">{{error}}</p>
@@ -78,23 +66,23 @@
   <li class="media">
     {{!-- <a href="#" class="pull-left"> --}}
     <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-    </a>
+    {{!-- </a> --}}
     <div class="media-body">
       {{!-- <span class="text-muted pull-right">
                 <small class="text-muted">{{this.date}}</small>
             </span> --}}
-            <table>
-              <tr>
-                <td>
-                    <strong class="text-success">{{this.name}}</strong>
-                </td>
-                <td class="space">
-                </td>
-                <td>
-                  <strong class="text-success_stars">Rating: {{this.stars}}/5</strong>
-                </td>
-              </tr>
-            </table>
+      <table>
+        <tr>
+          <td>
+            <strong class="text-success">{{this.name}}</strong>
+          </td>
+          <td class="space">
+          </td>
+          <td>
+            <strong class="text-success_stars">Rating: {{this.stars}}/5</strong>
+          </td>
+        </tr>
+      </table>
       <p>
         {{this.comment}}
       </p>

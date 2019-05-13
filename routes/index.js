@@ -5,7 +5,7 @@ const auth = require("../middleware/auth")
 const menuRouter = require('./menu');
 const userRouter = require('./user');
 const orderRouter = require("./order");
-const reviewRouter = require("./review");
+//const reviewRouter = require("./review");
 const loginRouter = require('./login');
 const logoutRouter = require('./logout');
 const signupRouter = require('./signup');
@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 router.use('/user', userRouter);
 router.use('/menu', menuRouter);
 router.use('/order', orderRouter);
-router.use('/review', reviewRouter);
+//router.use('/review', reviewRouter);
 router.use('/login', loginRouter);
 router.use('/logout', logoutRouter);
 router.use('/signup', signupRouter);

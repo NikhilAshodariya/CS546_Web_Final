@@ -40,6 +40,9 @@ router.post("/", async (req, res) => {
   console.log("aswedfrthy");
 
   try {
+    if(!req.body.user_emailId || !req.body.name || !req.body.comment || !req.body.stars){
+      throw e;
+  }
     let email = xss(req.body.user_emailId);
     let emailresult = await user.checkUsername(email);
     if (emailresult) {
@@ -52,28 +55,49 @@ router.post("/", async (req, res) => {
       res.redirect("/writeReview");
     } else {
       const reviewList = await review.getAllReview();
-      res.status(401);
-      res.render("writeReview", {
+      if (req.cookies.name === "AuthCookie") {
+      res.status(401).render("writeReview", {
         cssName: "main",
         title: " Reviews",
-        errorfound: "Please create an account to add a review",
+        errorfound: "Click here create an account to add a review",
         ReviewList: reviewList,
-        noError: true
+        noError: true,
+        auth:true
       });
+    }
+    else{
+      res.status(401).render("writeReview", {
+        cssName: "main",
+        title: " Reviews",
+        errorfound: "Click here create an account to add a review",
+        ReviewList: reviewList,
+        noError: true,
+      });
+    }
     }
 
     //res.status(200).json(newReview);
   } catch (e) {
     console.log("am just caught here");
     const reviewList = await review.getAllReview();
-    res.status(401);
-    res.render("writeReview", {
+    if (req.cookies.name === "AuthCookie") {
+    res.status(401).render("writeReview", {
+      cssName: "main",
+      title: " Reviews",
+      emptyerror: "Please fill all the fields",
+      ReviewList: reviewList,
+      noError: true,
+      auth:true
+    });
+  }else{
+    res.status(401).render("writeReview", {
       cssName: "main",
       title: " Reviews",
       errorfound: "Please fill all the fields",
       ReviewList: reviewList,
       noError: true
     });
+  }
   }
 });
 

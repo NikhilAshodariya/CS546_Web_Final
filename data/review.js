@@ -36,56 +36,36 @@ async function getReviewById(id) {
   return review_;
 }
 
-// async function getReviewByEmail(user_email) {
-//   if (!user_email) throw "You must provide an id to search for";
-//   if (typeof user_email !== "string") {
-//     throw ` incorrect input please enter a valid id check type maybeEE`;
-//   }
-//   if (arguments.length != 1) {
-//     throw "The input for getbyId function should be only one";
-//   }
-//   if(typeof user_email === "undefined") {
-//     throw "The input shouldn't be undefined";
-// }
-//   const reviewCollections = await review();
-//   //let parsedReviewId = ObjectId.createFromHexString(email);
-//   let review_ = await reviewCollections.findOne({email: user_email });
 
-//   if (review_ === null) {
-//     throw `There is no such user with the id of ${email}`;
+// async function addReview(userId, date, stars, comment) {
+//   if(arguments.length < 4) {
+//     throw "You should enter all four";
 //   }
-//   return review_;
-// }
-
-async function addReview(userId, date, stars, comment) {
-  if(arguments.length < 4) {
-    throw "You should enter all four";
-  }
-  if (!stars) throw "You must provide stars";
-        if (typeof comment !== 'string' || typeof userId !== 'string') {
-          throw ` incorrect input please enter a valid input check type for comment  or id`;
-            }
+//   if (!stars) throw "You must provide stars";
+//         if (typeof comment !== 'string' || typeof userId !== 'string') {
+//           throw ` incorrect input please enter a valid input check type for comment  or id`;
+//             }
         
-      //if(typeof date !== '')
-  const reviewCollection = await review();
-  //const usersCollection = await users_();
+//       //if(typeof date !== '')
+//   const reviewCollection = await review();
+//   //const usersCollection = await users_();
 
-  const userThatPosted = await users.getUserById(String(userId));
+//   const userThatPosted = await users.getUserById(String(userId));
 
-  const newReview = {
-    userId: userThatPosted._id,
-    date: date,
-    stars: stars,
-    comment: comment
-  };
+//   const newReview = {
+//     userId: userThatPosted._id,
+//     date: date,
+//     stars: stars,
+//     comment: comment
+//   };
 
-  const newInsertInformation = await reviewCollection.insertOne(newReview);
-  if (newInsertInformation.insertedCount === 0) {
-    throw `Failed to create the review`;
-  }
-  const newId = newInsertInformation.insertedId;
-  return await this.getReviewById(String(newId));
-}
+//   const newInsertInformation = await reviewCollection.insertOne(newReview);
+//   if (newInsertInformation.insertedCount === 0) {
+//     throw `Failed to create the review`;
+//   }
+//   const newId = newInsertInformation.insertedId;
+//   return await this.getReviewById(String(newId));
+// }
 
 async function postReview(user_email, name, stars, comment) {
   if(arguments.length < 4) {
@@ -107,7 +87,8 @@ async function postReview(user_email, name, stars, comment) {
     user_emailId: user_email,
     name: name,
     stars: stars,
-    comment: comment
+    comment: comment,
+    date : new Date()
   };
 
   const newInsertInformation = await reviewCollection.insertOne(newReview);
@@ -240,7 +221,7 @@ async function deleteReview(id) {
 module.exports = {
   getAllReview,
   getReviewById,
-  addReview,
+  
   postReview,
   updateReview,
   updateComment,

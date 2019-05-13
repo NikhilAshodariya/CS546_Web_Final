@@ -44,7 +44,7 @@ app.use(routes)
 
 // Start the server
 app.listen(3000, () => {
-  console.log('Server Listening on localhost:3000');
+  console.log('Server Listening on http://localhost:3000');
 });
 
 
