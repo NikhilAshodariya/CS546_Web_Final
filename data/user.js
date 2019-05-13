@@ -19,16 +19,6 @@ let exportedMethods = {
     return allUsers;
   },
 
-  // const animalsCollection = await animals();
-  //   const allAnimals = await animalsCollection.find().toArray();
-  //   const postCollection = await posts();
-  
-  //   for (let animal of allAnimals) {
-  //     const animalPosts = await postCollection.find({ author: animal._id }, { projection: { _id: 1, title: 1 } }).toArray();
-  //     animal.posts = animalPosts;
-  //   }
-  //   return allAnimals;
-
   async getUserById(id) {
     const checkedId = checkObjectId(id);
     const userCollection = await users();
@@ -44,13 +34,7 @@ let exportedMethods = {
         userOrders.push(order);
       }
     }
-
-    // console.log("ORDERS")
-    // console.log(allOrders)
-    // const userOrders = await orderCollection.find({ userId: checkedId }, { projection: { _id: 1, orderDateTime: 1, total: 1 } }).toArray();
     user.orders = userOrders;
-    console.log("USERORDERS")
-    console.log(user.orders)
     return user;
   },
 
