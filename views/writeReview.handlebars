@@ -1,4 +1,6 @@
-<h1 class="writeReview">{{title}}</h1>
+<br>
+<h1 class="writeReview centered">{{title}}</h1>
+<br>
 {{!-- <link href="public/css/style.css" rel="stylesheet" id="bootstrap-css">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
@@ -7,49 +9,62 @@
 
 
 <form action="/writeReview" method="POST" class="new-review-form" id="review-form">
-  <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" class="input" id="user_emailId" name="user_emailId">
-    <div class="line-box">
-      <div class="line"></div>
+  <div class="card text-center">
+    <div class="card-header">
+      Write a Review
     </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" id="name" name="name">
-    <div class="line-box">
-      <div class="line"></div>
+    <div class="card-body">
+        <div class="form-row">
+          <div class="col">
+            <label for="user_emailId">Email</label>
+            <input type="email" class="form-control" id="user_emailId" name="user_emailId" placeholder="Email"> 
+          </div>
+          <div class="col">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+          </div>
+          <div class="col">
+            <label for="name">Rating (1-5)</label>
+            <input type="number" class="form-control" id="stars" name="stars" placeholder="Rating (1-5)" maxSize="1">
+          </div>
+        </div>
+        <br>
+        <label for="comment">Comments</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+{{!-- 
+        <label>
+          <p class="label-txt">FEEDBACK!!</p>
+          <input type="text" class="input" id="comment" name="comment">
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label>
+        <label>
+          <p class="label-txt">RATINGS OUT OF 5</p>
+          <input type="number" class="input" id="stars" name="stars">
+          <div class="line-box">
+            <div class="line"></div>
+          </div>
+        </label> --}}
+        <p class="error">
+          {{errorfound}}
+        </p>
+
+
+        <button type="submit" class="button5 btn btn-dark">Submit Review</button>
     </div>
-  </label>
-  <label>
-    <p class="label-txt">FEEDBACK!!</p>
-    <input type="text" class="input" id="comment" name="comment">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">RATINGS OUT OF 5</p>
-    <input type="number" class="input" id="stars" name="stars">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <button type="submit" class="button5">Submit Review</button>
-  <p class="error">
-    {{errorfound}}
-  </p>
+  </div>
+  
+ 
 </form>
-<div class="error" id="error" >
+<div class="error" id="error">
 </div>
 <div>
 
+<br>
+<br>
+<br>
 
-
-</div>
-<a class="_home" href="/"><i class="fa fa-fw fa-home"></i> Home</a> 
-{{!-- <div class="_home"><a href="/">Home</a></div> --}}
-<div>
 
   
 </div>
@@ -76,7 +91,7 @@
                 <td class="space">
                 </td>
                 <td>
-                  <strong class="text-success_stars"> RATINGS {{this.stars}}/5</strong>
+                  <strong class="text-success_stars">Rating: {{this.stars}}/5</strong>
                 </td>
               </tr>
             </table>

@@ -56,16 +56,19 @@ router.get("/ge/:id", async (req, res) => {
 // This route is used to finish purchase
 router.get("/checkOut", async (req, res) => {
   console.log(`orderid = ${req.session.orderId}`);
-  if (req.session.user != undefined) {
-    res.render("order", {
-      "cssName": "order",
-      "auth": true
-    });
+
+  if (req.cookies.name === 'AuthCookie') {
+    if (req.session.user) {
+      res.render("order", {
+        "cssName": "order",
+        "auth": true
+      });
+    }
+    else {
+      res.redirect('/login')
+    }
   } else {
-    res.render("order", {
-      "cssName": "order",
-      "auth": false
-    });
+    res.redirect('/login')
   }
 });
 

@@ -6,18 +6,32 @@
   </div>
 </div>
 
+<br>
+
+<a href="/menu" class="btn btn-warning centered">Place an Order</a>
+
+<br>
+<br>
+<br>
 
 <div class="card text-center">
   <div class="card-header">
     Your Orders
   </div>
-  {{#each user.orders}}
-    <ul>
-        <li>Order placed: {{this.orderDateTime}}</li>
-        <li>Total: {{this.total}}</li>
-    </ul>
-    <hr>
-  {{/each}}
+  {{#if user.orders}}
+    {{#each user.orders}}
+        <ul>
+            <li>Order placed: {{this.orderDateTime}}</li>
+            <li>Total: {{this.total}}</li>
+        </ul>
+        <hr>
+    {{/each}}
+  {{else}}
+    <br>
+    <br>
+    <p class="card-text centered">You haven't placed an order yet.</p>
+    <br>
+  {{/if}}
   {{!-- <div class="card-body">
     <h5 class="card-title">First Order</h5>
     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

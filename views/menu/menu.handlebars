@@ -27,9 +27,15 @@
                             <button class="btn btn-primary" type="submit" value="{{this._id}}">Open</button>
                         </form>
                         <br> --}}
-                        <form method="POST" action="/order/create/{{this._id}}">
-                            <button class="btn btn-primary" type="submit" value="{{this._id}}">Add to Cart</button>
-                        </form>
+                        
+                        {{#if ../auth}}
+                            <form method="POST" action="/order/create/{{this._id}}">
+                                <button class="btn btn-primary" type="submit" value="{{this._id}}">Add to Cart</button>
+                            </form>
+                        {{else}}
+                            <a href="/login" class="btn btn-dark">Log In to Order</a>
+                        {{/if}}
+                        
                     </div>
                     <div class="col-sm">
                         <img src="../{{this.imagepath}}" class="imagealign">
