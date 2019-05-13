@@ -18,8 +18,26 @@ function deleteMenuItem(even) {
   });
 }
 
+function deleteEntireCart(even) {
+  $.ajax({
+    url: "/order/delteOrder",
+    type: "POST",
+    success: function(res) {
+      alert("Your order is placed and your cart is empty");
+      window.location.href = "/menu";
+    },
+    error: function(request, status, err) {
+      alert("Your order is not placed.");
+      window.location.href = "/menu";
+    }
+  });
+}
 
 $(document).ready(function() {
+  $("a.btn-primary").click(function(even) {
+    deleteEntireCart(even);
+  });
+
   $.ajax({
     url: "/order/getAllOrders",
     type: "POST",

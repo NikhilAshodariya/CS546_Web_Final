@@ -48,9 +48,13 @@ router.post("/create/:id", async (req, res) => {
   }
 });
 
-router.get("/ge/:id", async (req, res) => {
-  var id = req.params.id;
-  var check = await orderData.getById(id);
+router.post("/delteOrder", async (req, res) => {
+  req.session.orderId = undefined;
+  res.status(200).json({
+    "status": true
+  });
+
+
 });
 
 // This route is used to finish purchase
@@ -62,7 +66,7 @@ router.get("/checkOut", async (req, res) => {
       res.render("order", {
         "cssName": "order",
         "auth": true,
-        "title":"Cart"
+        "title": "Cart"
       });
     } else {
       res.redirect('/login')
@@ -79,15 +83,21 @@ router.get("/payment", async (req, res) => {
 });
 
 router.post("/getAllOrders", async (req, res) => {
-  var check = await orderData.getAllOrderedMenus(req.session.orderId);
-  if (check.length == 0) {
-    res.status(200).json({});
-  } else if (check == false) {
-    res.status(500).json({
-      "status": "Everything went wrong"
+  if (req.session.orderId == undefined) {
+    res.stauts(200).json({
+      "status": false
     });
   } else {
-    res.status(200).json(check);
+    var check = await orderData.getAllOrderedMenus(req.session.orderId);
+    if (check.length == 0) {
+      res.status(200).json({});
+    } else if (check == false) {
+      res.status(500).json({
+        "status": "Everything went wrong"
+      });
+    } else {
+      res.status(200).json(check);
+    }
   }
 });
 
