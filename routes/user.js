@@ -4,11 +4,14 @@ const users = require("../data/user");
 const auth = require("../middleware/auth")
 
 
-router.get("/", auth, (req, res, next) => {
+router.get("/", auth, async (req, res, next) => {
   if (req.cookies.name === 'AuthCookie') {
     let userData = req.session.user
     if (userData) {
-      res.render("users/user", { user: userData, title: "Hi " + userData.name, auth: true })
+      console.log(req.session.user._id)
+      user = await users.getUserById(req.session.user._id)
+      console.log(user)
+      res.render("users/user", { user: user, title: "Hi " + userData.name, auth: true })
     }
     else {
       res.render("users/login", { title: "Login" });
