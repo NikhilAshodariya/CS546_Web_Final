@@ -15,6 +15,14 @@ async function main() {
     try {
         await upload.addMenuImage("Roast duck", 12, "It's a delicious food from Beijing, China.","Roast-duck.jpg","image/jpg","public/uploads/menuimages/Roast-duck.jpg")
         await upload.addMenuImage("French fries", 6, "It's a food from USA","french-fries.jpg","image/jpg","public/uploads/menuimages/french-fries.jpg");
+        await upload.addMenuImage("Chicken", 6,"It's a fried chicken", "chicken.jpg", "image/jpg", "public/uploads/menuimages/chicken.jpg");
+        await upload.addMenuImage("Pizza", 12, "A big cuisine with lots of meat","pizza.jpg", "image/jpg", "public/uploads/menuimages/pizza.jpg");
+        await upload.addMenuImage("Spaghetti", 12, "A kind of noodles with meat","spaghetti.jpg", "image/jpg", "public/uploads/menuimages/spaghetti.jpg");
+        await upload.addMenuImage("Taco", 6, "A special food in Mexico","taco.jpg", "image/jpg", "public/uploads/menuimages/taco.jpg");
+        await upload.addMenuImage("Tofu", 12, "A common food from Sichuan, China","tofu.jpg", "image/jpg", "public/uploads/menuimages/tofu.jpg");
+        await upload.addMenuImage("Kung-Pao Chicken", 12, "A delicious cut-up chicken food","Kung-Pao Chicken.jpg", "image/jpg", "public/uploads/menuimages/Kung-Pao Chicken.jpg")
+        await upload.addMenuImage("Sweet and sour fillet", 12, "A sweet and sour flavor food","Sweet and sour fillet.jpg", "image/jpg", "public/uploads/menuimages/Sweet and sour fillet.jpg")
+        await upload.addMenuImage("Yang’s Braised Chicken", 12, "A spicy cuisine procuced by chicken","Yang’s Braised Chicken.jpg", "image/jpg", "public/uploads/menuimages/Yang’s Braised Chicken.jpg");
     } catch(e) {
         console.log(e);
     }
