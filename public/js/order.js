@@ -23,6 +23,7 @@ $(document).ready(function() {
   $.ajax({
     url: "/order/getAllOrders",
     type: "POST",
+    async: false,
     success: function(res) {
       console.log(res);
       dispalyOrders(res)
