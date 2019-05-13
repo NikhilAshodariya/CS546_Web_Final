@@ -7,12 +7,19 @@ const orderData = data.order;
 
 // This route is used to add element to cart i.e. to order it
 router.post("/create/:id", async (req, res) => {
+  if (req.session.user == undefined) {
+    res.writeHeader(200, {
+      "Content-Type": "text/html",
+    });
+    res.write(`<html><body><script>alert('Login before adding to cart');window.location.href = "/menu"</script></body>`);
+    res.end();
+
+  }
+
   let userEmail = req.session.user;
   let productOrderedId = req.params.id;
   let orderId = req.session.orderId;
 
-  // request.session.AuthCookie = true;
-  // orderId = undefined;
   if (orderId != undefined) {
     // That means that user has a already ordered something
     var check = await orderData.getById(orderId);
@@ -24,15 +31,7 @@ router.post("/create/:id", async (req, res) => {
       if (updatedOrder == false) {
         // Something went wrong
       } else {
-        // /order/checkOut
         res.redirect("/order/checkOut");
-
-        // res.redirect('/menu');
-        // Everything is going best
-        // res.json({
-        //   "status": true,
-        //   "obj": updatedOrder
-        // });
       }
     }
   } else {
@@ -45,22 +44,6 @@ router.post("/create/:id", async (req, res) => {
     } else {
       req.session.orderId = check["_id"];
       res.redirect("/order/checkOut");
-
-      // res.redirect('/menu');
-      // if (req.cookies.name === 'AuthCookie') {
-      //   res.render("menu/menu", {
-      //     food: foodList,
-      //     css: "some.css",
-      //     auth: true,
-      //     addedToCart:true
-      //   })
-      // } else {
-      //   res.render("menu/menu", {
-      //     food: foodList,
-      //     css: "some.css",
-      //     addedToCart:true
-      //   })
-      // }
     }
   }
 });

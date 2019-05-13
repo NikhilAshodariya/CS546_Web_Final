@@ -5,11 +5,12 @@ const auth = require("../middleware/auth")
 
 
 router.get("/", (req, res, next) => {
-    res.clearCookie('name')
+    res.clearCookie('name');
     // req.session.user
-    res.redirect("/")
-    console.log("redirect")
+    res.redirect("/");
+    console.log("redirect");
+    req.session.destroy();
   });
-    
+
 
 module.exports = router;
