@@ -84,7 +84,7 @@ router.get("/payment", async (req, res) => {
 
 router.post("/getAllOrders", async (req, res) => {
   if (req.session.orderId == undefined) {
-    res.stauts(200).json({
+    res.status(200).json({
       "status": false
     });
   } else {

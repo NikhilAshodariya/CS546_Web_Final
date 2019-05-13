@@ -7,24 +7,32 @@ const {
 
 // GET todos/
 router.get('/', async (req, res) => {
-  try{
+  try {
     let foodList = await upload.getAll();
     foodList.forEach(element => {
       let arrExt = element.mMimetype;
-      if(arrExt == "image/png" || arrExt == "image/jpeg" || arrExt == "image/bmp") {
+      if (arrExt == "image/png" || arrExt == "image/jpeg" || arrExt == "image/bmp") {
         element.img = true;
       }
     })
     // console.log(foodList);
-    if (req.cookies.name === 'AuthCookie') {
-      res.render("menu/menu", {food: foodList, css: "some.css", auth: true})
-    } 
-    else {
-      res.render("menu/menu", {food: foodList, css: "some.css"})
+    if (req.session.user != undefined) {
+      res.render("menu/menu", {
+        food: foodList,
+        css: "some.css",
+        auth: true
+      })
+    } else {
+      res.render("menu/menu", {
+        food: foodList,
+        css: "some.css"
+      })
     }
     // res.status(200).json(foodList);
-  } catch(e) {
-    res.render("menu/menu", {errMsg: e});
+  } catch (e) {
+    res.render("menu/menu", {
+      errMsg: e
+    });
   }
 });
 
@@ -45,19 +53,25 @@ router.post('/', async (req, res) => {
     let Liststr = JSON.stringify(result);
     List.forEach(element => {
       let arrExt = element.mMimetype;
-      if(arrExt == "image/png" || arrExt == "image/jpeg" || arrExt == "image/bmp") {
+      if (arrExt == "image/png" || arrExt == "image/jpeg" || arrExt == "image/bmp") {
         element.img = true;
       }
     });
-    if(Liststr == JSON.stringify([])) {
-      res.render("menu/menu", {errMsg: "Menu not found"});
+    if (Liststr == JSON.stringify([])) {
+      res.render("menu/menu", {
+        errMsg: "Menu not found"
+      });
     } else {
-      res.render("menu/menu", {food: List, css: "some.css"})
+      res.render("menu/menu", {
+        food: List,
+        css: "some.css"
+      })
     }
-  } catch(e) {
-    res.render("menu/menu", {errMsg: e});
+  } catch (e) {
+    res.render("menu/menu", {
+      errMsg: e
+    });
   }
 })
 
 module.exports = router;
-
