@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.usersCollection;
-const orders = mongoCollections.menuCollection;
+const orders = mongoCollections.orderCollection;
 
 
 let exportedMethods = {
@@ -34,6 +34,15 @@ let exportedMethods = {
     const userCollection = await users();
     const user = await userCollection.findOne({ _id: checkedId });
     if (!user) throw 'User was not found!';
+
+    const orderCollection = await orders();
+    const allOrders = await orderCollection.find().toArray();
+    console.log("ORDERS")
+    console.log(allOrders)
+    const userOrders = await orderCollection.find({ userId: checkedId }, { projection: { _id: 1, orderDateTime: 1, total: 1 } }).toArray();
+    user.orders = userOrders;
+    console.log("USERORDERS")
+    console.log(userOrders)
     return user;
   },
 
