@@ -15,11 +15,15 @@ const uploadFormRouter = require('./uploadForm');
 
 
 router.get("/", (req, res) => {
-  if (req.cookies.name === 'AuthCookie') {
-    res.render("home/home", { title: "Home", auth: true });
-  } 
-  else {
-    res.render("home/home", { title: "Home" });
+  if (req.session.user != undefined) {
+    res.render("home/home", {
+      title: "Home",
+      auth: true
+    });
+  } else {
+    res.render("home/home", {
+      title: "Home"
+    });
   }
 });
 
