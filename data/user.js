@@ -37,12 +37,20 @@ let exportedMethods = {
 
     const orderCollection = await orders();
     const allOrders = await orderCollection.find().toArray();
-    console.log("ORDERS")
-    console.log(allOrders)
-    const userOrders = await orderCollection.find({ userId: checkedId }, { projection: { _id: 1, orderDateTime: 1, total: 1 } }).toArray();
+
+    userOrders = []
+    for (let order of allOrders) {
+      if (order.userId === user.email) {
+        userOrders.push(order);
+      }
+    }
+
+    // console.log("ORDERS")
+    // console.log(allOrders)
+    // const userOrders = await orderCollection.find({ userId: checkedId }, { projection: { _id: 1, orderDateTime: 1, total: 1 } }).toArray();
     user.orders = userOrders;
     console.log("USERORDERS")
-    console.log(userOrders)
+    console.log(user.orders)
     return user;
   },
 

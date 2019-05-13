@@ -19,11 +19,19 @@
     Your Orders
   </div>
   {{#if user.orders}}
+  <br>
     {{#each user.orders}}
-        <ul>
-            <li>Order placed: {{this.orderDateTime}}</li>
-            <li>Total: {{this.total}}</li>
-        </ul>
+        <div class="row">
+            <div class="col-8">
+                    <p>Order Placed: {{this.orderDateTime}}</p>
+            </div>
+            <div class="col-2">
+                    <p>{{this.menuItems.length}} Items Ordered</p>
+            </div>
+            <div class="col-2">
+                    <p>Total: ${{this.total}}</p>
+            </div>
+        </div>
         <hr>
     {{/each}}
   {{else}}
