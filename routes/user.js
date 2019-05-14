@@ -5,8 +5,10 @@ const auth = require("../middleware/auth")
 
 
 router.get("/", auth, async (req, res, next) => {
+  console.log("why1")
   if (req.cookies.name === 'AuthCookie') {
     let userData = req.session.user
+    console.log("why")
     if (userData) {
       console.log(req.session.user._id)
       user = await users.getUserById(req.session.user._id)

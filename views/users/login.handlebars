@@ -4,7 +4,8 @@
         <br>
         <form id="login-form" method="post" action="/login">
             <div class="form-group">
-                <label for="username">Email</label>
+                {{!-- changed the for to email to pass the w3c validator--}}
+                <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                 <br>
                 <label for="password">Password</label>
