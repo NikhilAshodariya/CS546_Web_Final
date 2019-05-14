@@ -73,7 +73,7 @@ function dispalyOrders(res) {
       <tr>
         <td data-th="Product">
           <div class="row">
-            <div class="col-sm-2 hidden-xs"><img src="/${temp["imagepath"]}" style="width:80px;height:80px;" class="img-responsive" /></div>
+            <div class="col-sm-2 hidden-xs"><img src="/${temp["imagepath"]}" alt="${temp["name"]}" style="width:80px;height:80px;" class="img-responsive" /></div>
             <div class="col-sm-10">
               <h4 class="nomargin">${temp["name"]}</h4>
               <p>${temp["description"]}</p>
