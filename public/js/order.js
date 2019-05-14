@@ -12,7 +12,7 @@ function deleteMenuItem(even) {
       }
     },
     error: function(err) {
-      alert("could not delte it");
+      alert("Could not delete.");
       console.log(`Some error has happedned ${err}`);
     }
   });
@@ -25,15 +25,15 @@ function deleteEntireCart(even) {
     success: function(res) {
       res = JSON.parse(JSON.stringify(res));
       if (res["status"] == true) {
-        alert("Your order has been placed Thank you.");
-        window.location.href = "/menu";
+        alert("Your order has been placed. Thank you.");
+        window.location.href = "/user";
       }else{
-        alert("Your order could not be placed");
+        alert("We're sorry. Your order could not be placed.");
       }
 
     },
     error: function(request, status, err) {
-      alert("Your order is not placed.");
+      alert("We're sorry. Your order could not be placed.");
       window.location.href = "/menu";
     }
   });

@@ -53,7 +53,7 @@ router.post("/recaptchaVerify", async (req,res)=>{
     captchaThing === null
   ) {
     console.log("in client side");
-     res.status(200).json({ success: false, msg: "please select captcha" });
+     res.status(200).json({ success: false, msg: "Please verify that you're human by completing the CAPTCHA." });
   } else {
     console.log("cap1");
     const secrectkey = "6LekVqMUAAAAAGQ_W4IzkOghxZATEQmhloxR30fH";
@@ -67,14 +67,14 @@ router.post("/recaptchaVerify", async (req,res)=>{
       if (body.success !== undefined && !body.success) {
         console.log("first here");
 
-        res.status(200).json({ success: false, msg: "Failed captcha verification" });
+        res.status(200).json({ success: false, msg: "CAPTCHA verification has failed. Please try again." });
       } else {
         console.log("second here");
         var a = 10 + 2;
         console.log(a);
         //debugger;
         console.log(body.success);
-        res.status(200).json({ "success": true, "msg": "Your review will be posted Thank You!!" });
+        res.status(200).json({ "success": true, "msg": "Your review will be posted. Thank you!" });
       }
     });
   }
@@ -128,7 +128,7 @@ router.post("/", async (req, res) => {
     res.status(401).render("writeReview", {
       cssName: "main",
       title: " Reviews",
-      emptyerror: "Please fill all the fields",
+      emptyerror: "Please fill all of the fields.",
       ReviewList: reviewList,
       noError: true,
       auth:true
@@ -137,7 +137,7 @@ router.post("/", async (req, res) => {
     res.status(401).render("writeReview", {
       cssName: "main",
       title: " Reviews",
-      errorfound: "Please fill all the fields",
+      errorfound: "Please fill all of the fields.",
       ReviewList: reviewList,
       noError: true
     });
