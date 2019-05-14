@@ -17,7 +17,7 @@ Users can log in using the nav link in the top right of the site. Clicking this 
 A user account has been added to the database with the following credentials:
   * Email: patrick@gmail.com
   * Name: Patrick
-  * Password: elementarymydearwatson
+  * Password: quidditch
   
 ### Leaving A Review
 User should navigate to the Reviews page (in top nav bar). At the top of the page, there is a form to be filled out to leave a review. All reviews are shown on the page below.
