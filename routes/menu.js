@@ -18,14 +18,16 @@ router.get('/', async (req, res) => {
     // console.log(foodList);
     if (req.session.user != undefined) {
       res.render("menu/menu", {
+        title: "Menu",
         food: foodList,
-        css: "some.css",
+        cssName: "some.css",
         auth: true
       })
     } else {
       res.render("menu/menu", {
+        title: "Menu",
         food: foodList,
-        css: "some.css"
+        cssName: "some"
       })
     }
     // res.status(200).json(foodList);

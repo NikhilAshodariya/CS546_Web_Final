@@ -20,9 +20,9 @@ async function main() {
         await upload.addMenuImage("Spaghetti", 12, "A kind of noodles with meat","spaghetti.jpg", "image/jpg", "public/uploads/menuimages/spaghetti.jpg");
         await upload.addMenuImage("Taco", 6, "A special food in Mexico","taco.jpg", "image/jpg", "public/uploads/menuimages/taco.jpg");
         await upload.addMenuImage("Tofu", 12, "A common food from Sichuan, China","tofu.jpg", "image/jpg", "public/uploads/menuimages/tofu.jpg");
-        await upload.addMenuImage("Kung-Pao Chicken", 12, "A delicious cut-up chicken food","Kung-Pao Chicken.jpg", "image/jpg", "public/uploads/menuimages/Kung-Pao Chicken.jpg")
-        await upload.addMenuImage("Sweet and sour fillet", 12, "A sweet and sour flavor food","Sweet and sour fillet.jpg", "image/jpg", "public/uploads/menuimages/Sweet and sour fillet.jpg")
-        await upload.addMenuImage("Yang’s Braised Chicken", 12, "A spicy cuisine procuced by chicken","Yang’s Braised Chicken.jpg", "image/jpg", "public/uploads/menuimages/Yang’s Braised Chicken.jpg");
+        //await upload.addMenuImage("Kung-Pao Chicken", 12, "A delicious cut-up chicken food","Kung-Pao Chicken.jpg", "image/jpg", "public/uploads/menuimages/Kung-Pao Chicken.jpg")
+        //await upload.addMenuImage("Sweet and sour fillet", 12, "A sweet and sour flavor food","Sweet and sour fillet.jpg", "image/jpg", "public/uploads/menuimages/Sweet and sour fillet.jpg")
+        //await upload.addMenuImage("Yang’s Braised Chicken", 12, "A spicy cuisine procuced by chicken","Yang’s Braised Chicken.jpg", "image/jpg", "public/uploads/menuimages/Yang’s Braised Chicken.jpg");
     } catch(e) {
         console.log(e);
     }
