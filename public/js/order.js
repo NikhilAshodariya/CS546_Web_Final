@@ -23,8 +23,14 @@ function deleteEntireCart(even) {
     url: "/order/delteOrder",
     type: "POST",
     success: function(res) {
-      alert("Your order is placed and your cart is empty");
-      window.location.href = "/menu";
+      res = JSON.parse(JSON.stringify(res));
+      if (res["status"] == true) {
+        alert("Your order has been placed Thank you.");
+        window.location.href = "/menu";
+      }else{
+        alert("Your order could not be placed");
+      }
+
     },
     error: function(request, status, err) {
       alert("Your order is not placed.");

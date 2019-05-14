@@ -49,12 +49,28 @@ router.post("/create/:id", async (req, res) => {
 });
 
 router.post("/delteOrder", async (req, res) => {
-  req.session.orderId = undefined;
-  res.status(200).json({
-    "status": true
-  });
-
-
+  var orderId = req.session.orderId;
+  if (orderId == undefined) {
+    res.status(200).json({
+      "status": false
+    });
+  } else {
+    var check = await orderData.getById(orderId);
+    if (check == false) {
+      // you should create a order object here.
+    } else {
+      if (check["menuItems"].length != 0) {
+        req.session.orderId = undefined;
+        res.status(200).json({
+          "status": true
+        });
+      } else {
+        res.status(200).json({
+          "status": false
+        });
+      }
+    }
+  }
 });
 
 // This route is used to finish purchase
