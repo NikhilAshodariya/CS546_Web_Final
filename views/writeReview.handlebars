@@ -1,4 +1,5 @@
-
+ <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+ <script src="/public/js/recap.js"></script>
 <br>
 <h1 class="writeReview centered">{{title}}</h1>
 <br>
@@ -10,10 +11,10 @@
     </div>
     <div class="card-body">
       <div class="form-row">
-        <div class="col">
+        {{!-- <div class="col">
           <label for="user_emailId">Email</label>
           <input type="email" class="form-control" id="user_emailId" name="user_emailId" placeholder="Email" required>
-        </div>
+        </div> --}}
         <div class="col">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
@@ -21,12 +22,14 @@
         <div class="col">
           <label for="name">Rating (1-5)</label>
           <input type="number" class="form-control" id="stars" name="stars" placeholder="Rating (1-5)" 
-            min="1" max="5" required>
+            min=1 max=5 required>
         </div>
       </div>
       <br>
       <label for="comment">Comments</label>
       <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+      <br>
+      
       <p class="error">
         <a href="/signup"> {{errorfound}}</a>
               
@@ -35,8 +38,10 @@
         {{emptyerror}}
       </p>
 
-
-      <button type="submit" class="button5 btn btn-dark">Submit Review</button>
+      <div class="form-group">
+        <div class="g-recaptcha"  data-sitekey="6LekVqMUAAAAADRmSDHn3UunIU-eElAHUyfVjIBK"></div>
+      </div>
+      <button type="button" onclick="test()" class="button5 btn btn-dark">Submit Review</button>
   
     </div>
   </div>
