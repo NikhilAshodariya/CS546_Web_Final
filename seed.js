@@ -27,13 +27,9 @@ async function main() {
 
 
     try {
-        /////////////// Create Users ////////////////
-        const phil = await user.addUser("phil@gmail.com","Phil","$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD.");
-        const id_1 = phil._id;
-        const keerthana = await user.addUser("keerthana@gmail.com","keerthana","$2a$16$SsR2TGPD24nfBpyRlBzINeGU61AH0Yo/CbgfOlU1ajpjnPuiQaiDm");
-        const id_2 = keerthana._id;
-        const patrick = await user.addUser("patrick@gmail.com","Patrick","$2a$16$4o0WWtrq.ZefEmEbijNCGukCezqWTqz1VWlPm/xnaLM8d3WlS5pnK");
-        const id_3 = patrick._id;
+        /////////////// Create User ////////////////
+        const test = await user.addUser("test@gmail.com","Patrick","$2b$08$Ky3qN680M7U/a6ZJ4zzrLuFNsHkKuElIt8pD2BmDiE3hKNodnK.bu");
+        const id = test._id;
 
        /////////////// Post Reviews ////////////////
         await review.postReview("phil@gmail.com", "Phil Baresi", "3", "The food was very spicy." )
