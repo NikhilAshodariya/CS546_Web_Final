@@ -62,8 +62,11 @@ footer {
     padding: 20px;
 }
 
-
-
+.hours {
+    margin-top: 30px;
+    font-weight:bold;
+    margin-bottom: 0px;
+}
 
 
 
