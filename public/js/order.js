@@ -23,8 +23,14 @@ function deleteEntireCart(even) {
     url: "/order/delteOrder",
     type: "POST",
     success: function(res) {
-      alert("Your order is placed and your cart is empty");
-      window.location.href = "/menu";
+      res = JSON.parse(JSON.stringify(res));
+      if (res["status"] == true) {
+        alert("Your order has been placed Thank you.");
+        window.location.href = "/menu";
+      }else{
+        alert("Your order could not be placed");
+      }
+
     },
     error: function(request, status, err) {
       alert("Your order is not placed.");
@@ -67,9 +73,9 @@ function dispalyOrders(res) {
       <tr>
         <td data-th="Product">
           <div class="row">
-            <div class="col-sm-2 hidden-xs"><img src="/${temp["imagepath"]}" style="width:80px;height:80px;" class="img-responsive" /></div>
+            <div class="col-sm-2 hidden-xs"><img src="/${temp["imagepath"]}" alt="${temp["name"]}" style="width:80px;height:80px;" class="img-responsive" /></div>
             <div class="col-sm-10">
-              <h4 class="nomargin">${temp["name"]}</h4>
+              <h1 class="nomargin">${temp["name"]}</h1>
               <p>${temp["description"]}</p>
             </div>
           </div>
