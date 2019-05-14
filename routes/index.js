@@ -43,12 +43,12 @@ router.use('/uploadMenu', uploadDataRouter);
 // Fallback if the route doesn't match any of our subrouters
 router.use('*', (req, res) => {
   res
-    .status(404)
-    .json({
-      error: 'Invalid Route',
-      route: req.originalUrl,
-      method: req.method
-    });
+    .status(404).render("error/error",{title:"Error Found",errorfound:" Invalid Route: Error Found enter valid path"})
+    // .json({
+    //   error: 'Invalid Route',
+    //   route: req.originalUrl,
+    //   method: req.method
+    // });
 });
 
 // Export our main router so we can use it in app.js
