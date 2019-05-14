@@ -75,7 +75,7 @@ function dispalyOrders(res) {
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="/${temp["imagepath"]}" alt="${temp["name"]}" style="width:80px;height:80px;" class="img-responsive" /></div>
             <div class="col-sm-10">
-              <h4 class="nomargin">${temp["name"]}</h4>
+              <h1 class="nomargin">${temp["name"]}</h1>
               <p>${temp["description"]}</p>
             </div>
           </div>
